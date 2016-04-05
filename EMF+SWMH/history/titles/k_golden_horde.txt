@@ -8,6 +8,7 @@
 }
 1217.1.1 = {
 	holder = 125502
+	liege = e_mongol_empire
 	active = yes
 }
 1227.1.2={
