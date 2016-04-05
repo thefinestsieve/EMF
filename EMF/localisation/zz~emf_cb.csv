@@ -102,3 +102,7 @@ emf_cb_debug_restore_hre_not_proper_religion;Religion is not Catholic or, if not
 emf_cb_debug_restore_hre_not_proper_culture;Culture is not appropriate for unification of the HRE\n;;;;;;;;;;;;;x
 emf_cb_debug_restore_hre_has_2plus_hre_titles;Holds at least 2 HRE kingdom titles\n;;;;;;;;;;;;;x
 emf_cb_debug_restore_hre_is_a_core_title;Is an HRE kingdom title, from our perspective\n;;;;;;;;;;;;;x
+mongol_invasion_annexation_tip;§Y[Root.GetTitledFirstName]§! takes all titles in the §Y[This.GetFullBaseName]§!.;;;;;;;;;;;;;x
+mongol_invasion_domination_tip;§Y[Root.GetTitledFirstName]§! takes all titles in the capital duchy of §Y[This.GetFullBaseName]§! and an adjacent duchy, and vassalizes all other titles.;;;;;;;;;;;;;x
+mongol_invasion_subjugation_tip;§Y[Root.GetTitledFirstName]§! forces §Y[From.GetTitledFirstName]§! to swear an oath of fealty and takes [From.GetHerHis] highest titles.;;;;;;;;;;;;;x
+

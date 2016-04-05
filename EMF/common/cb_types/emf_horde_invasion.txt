@@ -80,10 +80,22 @@ emf_horde_invasion = {
 		FROM = { prestige = -200 }
 		hidden_tooltip = {
 			ROOT = {
-				occupy_minors_of_occupied_settlements = FROM
-				gain_all_occupied_titles = {
-					who = FROM
-					type = invasion
+				if = {
+					limit = {
+						ROOT = { 
+							AND = {
+								has_landed_title = e_mongol_empire
+								ai = yes
+							}
+						}
+					}
+					ROOT = {
+						occupy_minors_of_occupied_settlements = FROM
+						gain_all_occupied_titles = {
+							who = FROM
+							type = invasion
+						}
+					}
 				}
 				if = {
 					limit = { has_nickname = no }
@@ -107,12 +119,219 @@ emf_horde_invasion = {
 		custom_tooltip = {
 			text = tribal_invasion_succ_tip
 			hidden_tooltip = {
-				ROOT = {
-					vassalize_or_take_under_title_destroy_duchies = {
-						title = PREV
-						enemy = FROM
-						is_crusade = yes # Even if the title holder is not participating in the war, gain holdings occupied by all Crusade participants
-						type = invasion
+				if = {
+					limit = {
+						NOT = {
+							ROOT = { 
+								AND = {
+									has_landed_title = e_mongol_empire
+									ai = yes
+								}
+							}
+						}
+					}
+					ROOT = {
+						vassalize_or_take_under_title_destroy_duchies = {
+							title = PREV
+							enemy = FROM
+							is_crusade = yes # Even if the title holder is not participating in the war, gain holdings occupied by all Crusade participants
+							type = invasion
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			text = mongol_invasion_annexation_tip
+			hidden_tooltip = {
+				if = {
+					limit = { 
+						ROOT = { 
+							AND = {
+								has_landed_title = e_mongol_empire
+								ai = yes
+							}
+						}
+						region = {
+							OR = {
+								emf_mongol_core_annexation
+								emf_mongol_extended_annexation
+							}
+						}
+					}
+					ROOT = {
+						gain_settlements_under_title = {
+							title = PREV
+							enemy = FROM
+							is_crusade = yes # Even if the title holder is not participating in the war, gain holdings occupied by all Crusade participants
+							type = invasion
+						}
+					}
+					# Handle revolters ... (note that if any of these hold nomadic provinces, we're not converting them to tribal)
+					save_event_target_as = emf_title
+					any_direct_de_jure_vassal_title = {
+						any_direct_de_jure_vassal_title = {
+							limit = {
+								holder_scope = {
+									top_liege = { liege_before_war = { character = FROM } }
+								}
+							}
+							holder_scope = {
+								top_liege = {
+									ROOT = {
+										gain_settlements_under_title = {
+											title = event_target:emf_title
+											enemy = PREV
+											is_crusade = yes # Even if the title holder is not participating in the war, gain holdings occupied by all Crusade participants
+											type = invasion
+										}
+									}
+								}
+							}
+						}
+					}
+					clear_event_target = emf_title
+				}
+			}
+		}
+		custom_tooltip = {
+			text = mongol_invasion_domination_tip
+			hidden_tooltip = {
+				if = {
+					limit = {
+						ROOT = { 
+							AND = {
+								has_landed_title = e_mongol_empire
+								ai = yes
+							}
+						}
+						region = {
+							OR = {
+								emf_region_mongol_core_domination
+								emf_region_mongol_extended_domination
+							}
+						}
+					}
+					capital_scope = {
+						duchy = {
+							ROOT = {
+								gain_settlements_under_title = {
+									title = PREV
+									enemy = FROM
+									is_crusade = yes
+									type = invasion
+								}
+							}
+							random_neighbor_province = {
+								duchy = {
+									ROOT = {
+										gain_settlements_under_title = {
+											title = PREV
+											enemy = FROM
+											is_crusade = yes
+											type = invasion
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			text = mongol_invasion_subjugation_tip
+			hidden_tooltip = {
+				if = {
+					limit = {
+						ROOT = { 
+							AND = {
+								has_landed_title = e_mongol_empire
+								ai = yes
+							}
+						}
+						region = {
+							NAND = {
+								emf_mongol_core_annexation
+								emf_mongol_extended_annexation
+								emf_region_mongol_core_domination
+								emf_region_mongol_extended_domination
+							}
+						}
+					}
+					FROM = {
+						set_defacto_liege = ROOT
+						if = {
+							limit = {
+								any_demesne_title = {
+									tier = ROOT
+									higher_tier_than = DUKE
+									NOT = { controls_religion = yes }
+								}
+							}
+							any_vassal = {
+								set_character_flag = emf_prior_vassal
+								set_defacto_liege = ROOT
+							}
+							any_demesne_title = {
+								limit = {
+									tier = ROOT
+									higher_tier_than = DUKE
+									NOT = { controls_religion = yes }
+								}
+								emf_destroy_title_effect = yes
+							}
+							ROOT = {
+								any_vassal = {
+									limit = {
+										has_character_flag = emf_prior_vassal
+										lower_tier_than = PREVPREV
+									}
+									set_defacto_liege = PREVPREV
+								}
+								any_vassal = {
+									limit = { has_character_flag = emf_prior_vassal }
+									clr_character_flag = emf_prior_vassal
+									pf_liege_change_effect = yes
+								}
+							}
+						}
+						any_demesne_title = {
+							limit = {
+								tier = ROOT
+								NOT = { controls_religion = yes }
+							}
+							emf_cb_nomadic_province_effect = yes
+							ROOT = {
+								grant_title = {
+									target = PREV
+									type = invasion
+								}
+							}
+							add_pressed_claim = PREV
+						}
+						if = {
+							limit = { NOT = { any_demesne_title = { controls_religion = yes } } }
+							set_defacto_liege = ROOT
+						}
+						if = {
+							limit = { any_demesne_title = { controls_religion = yes } }
+							any_vassal = {
+								set_defacto_liege = ROOT
+								pf_liege_change_effect = yes
+							}
+							any_demesne_title = {
+								limit = { NOT = { controls_religion = yes } }
+								emf_cb_nomadic_province_effect = yes
+								ROOT = {
+									grant_title = {
+										target = PREV
+										type = invasion
+									}		
+								}
+							}
+						}
+						pf_liege_change_effect = yes
 					}
 				}
 			}
