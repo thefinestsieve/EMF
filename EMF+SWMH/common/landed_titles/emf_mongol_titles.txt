@@ -1,0 +1,27 @@
+k_golden_horde = { # Golden Horde
+	color = { 243 180 17 }
+	short_name = yes
+	capital = 619 # Saray
+	# Always exists
+	landless = yes
+	culture = mongol
+	religion = tengri_pagan
+}
+k_il-khanate = { # Ilkhanate
+	color = { 120 180 20 }
+	short_name = yes
+	capital = 667 # Tabriz # Tabriz and Maragheh
+	# Always exists
+	landless = yes
+	culture = mongol
+	religion = tengri_pagan
+}
+k_chagatai = { #Chagatid Khanate
+	color = { 87 92 104 }
+	short_name = yes
+	capital = 1571 #Almaliq
+	#Always exists
+	landless = yes
+	culture = mongol
+	religion = tengri_pagan
+}

@@ -6109,14 +6109,24 @@ narrative_event = {
 						religion = tengri_pagan
 						culture = mongol
 						female = no
-						age = 24
+						age = 43
 						attributes = {
-							martial = 12
+							martial=10
+							diplomacy=8
+							intrigue=8
+							stewardship=9
 						}
-						trait = brilliant_strategist
-						trait = ambitious
-						trait = diligent
-						trait = brave
+						health = 6
+						fertility = 0.7
+						religion = "tengri_pagan"
+						culture = "mongol"
+						trait = "brave"
+						trait = "ambitious"
+						trait = "diligent"
+						trait = "cruel"
+						trait = "hunter"
+						trait = "cavalry_leader"
+						trait = "brilliant_strategist"
 					}
 					new_character = {
 						e_mongol_empire = {
@@ -6140,6 +6150,7 @@ narrative_event = {
 						wealth = 15000
 						set_character_flag = horde_invader
 						prestige = 5000
+						character_event = { id = 60505 } # Spawn Temujins generals
 						character_event = { id = 60509 } # Spawn courtiers
 						character_event = { id = 60510 } # Spawn troops
 						character_event = { id = 60515 days = 1 } # Spawn population
@@ -6320,6 +6331,28 @@ character_event = {
 		new_character = {
 			set_father = ROOT
 			set_mother = event_target:borte
+			prestige = 75
+			k_chagatai = {
+				set_title_landless = { title = THIS status = yes }
+				set_title_flag = temporary_landless_title
+				activate_title = { title = k_chagatai status = yes }
+				grant_title = PREV
+			}
+			set_defacto_liege = ROOT
+			if = {
+				limit = {
+					has_dlc = "Horse Lords"
+				}
+				set_government_type = nomadic_government
+				manpower = 250
+				population = 1200
+			}
+			if = {
+				limit = {
+					NOT = { has_dlc = "Horse Lords" }
+				}
+				set_government_type = tribal_government
+			}	
 		}
 		create_character = {
 			name="Ogodei" # Ögedei Khan
@@ -6334,6 +6367,28 @@ character_event = {
 		new_character = {
 			set_father = ROOT
 			set_mother = event_target:borte
+			prestige = 200
+			k_golden_horde = {
+				set_title_landless = { title = THIS status = yes }
+				set_title_flag = temporary_landless_title
+				activate_title = { title = k_golden_horde status = yes }
+				grant_title = PREV
+			}
+			set_defacto_liege = ROOT
+			if = {
+				limit = {
+					has_dlc = "Horse Lords"
+				}
+				set_government_type = nomadic_government
+				manpower = 250
+				population = 1200
+			}
+			if = {
+				limit = {
+					NOT = { has_dlc = "Horse Lords" }
+				}
+				set_government_type = tribal_government
+			}
 		}
 		create_character = {
 			name="Jochi"
@@ -6349,6 +6404,28 @@ character_event = {
 		new_character = {
 			set_father = ROOT
 			set_mother = event_target:borte
+			prestige = 100
+			k_il-khanate = {
+				set_title_landless = { title = THIS status = yes }
+				set_title_flag = temporary_landless_title
+				activate_title = { title = k_il-khanate status = yes }
+				grant_title = PREV
+			}
+			set_defacto_liege = ROOT
+			if = {
+				limit = {
+					has_dlc = "Horse Lords"
+				}
+				set_government_type = nomadic_government
+				manpower = 250
+				population = 1200
+			}
+			if = {
+				limit = {
+					NOT = { has_dlc = "Horse Lords" }
+				}
+				set_government_type = tribal_government
+			}
 		}
 		create_character = {
 			name="Tolui"

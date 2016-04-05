@@ -1,0 +1,22 @@
+20.1.1={
+	active = no
+	historical_nomad = yes
+}
+1066.1.1={
+	law = agnatic_succession
+	law = succ_ultimogeniture
+}
+1217.1.1 = {
+	holder = 93062
+	active = yes
+}
+1242.1.1={
+	holder = 93064
+}
+1246.1.1={
+	holder = 93065
+}
+1248.1.1={
+	holder = 0
+	active = no
+}
