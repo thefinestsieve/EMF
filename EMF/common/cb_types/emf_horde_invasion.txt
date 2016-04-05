@@ -82,19 +82,13 @@ emf_horde_invasion = {
 			ROOT = {
 				if = {
 					limit = {
-						ROOT = { 
-							AND = {
-								has_landed_title = e_mongol_empire
-								ai = yes
-							}
-						}
+						has_landed_title = e_mongol_empire
+						ai = yes
 					}
-					ROOT = {
-						occupy_minors_of_occupied_settlements = FROM
-						gain_all_occupied_titles = {
-							who = FROM
-							type = invasion
-						}
+					occupy_minors_of_occupied_settlements = FROM
+					gain_all_occupied_titles = {
+						who = FROM
+						type = invasion
 					}
 				}
 				if = {
@@ -119,18 +113,14 @@ emf_horde_invasion = {
 		custom_tooltip = {
 			text = tribal_invasion_succ_tip
 			hidden_tooltip = {
-				if = {
-					limit = {
-						NOT = {
-							ROOT = { 
-								AND = {
-									has_landed_title = e_mongol_empire
-									ai = yes
-								}
+				ROOT = {
+					if = {
+						limit = {
+							NOT = {
+								has_landed_title = e_mongol_empire
+								ai = yes
 							}
 						}
-					}
-					ROOT = {
 						vassalize_or_take_under_title_destroy_duchies = {
 							title = PREV
 							enemy = FROM
@@ -147,16 +137,12 @@ emf_horde_invasion = {
 				if = {
 					limit = { 
 						ROOT = { 
-							AND = {
-								has_landed_title = e_mongol_empire
-								ai = yes
-							}
+							has_landed_title = e_mongol_empire
+							ai = yes
 						}
-						region = {
-							OR = {
-								emf_mongol_core_annexation
-								emf_mongol_extended_annexation
-							}
+						OR = {
+							region = emf_region_mongol_core_annexation
+							region = emf_region_mongol_extended_annexation
 						}
 					}
 					ROOT = {
@@ -200,16 +186,12 @@ emf_horde_invasion = {
 				if = {
 					limit = {
 						ROOT = { 
-							AND = {
-								has_landed_title = e_mongol_empire
-								ai = yes
-							}
+							has_landed_title = e_mongol_empire
+							ai = yes
 						}
-						region = {
-							OR = {
-								emf_region_mongol_core_domination
-								emf_region_mongol_extended_domination
-							}
+						OR = {
+							region = emf_region_mongol_core_domination
+							region = emf_region_mongol_extended_domination
 						}
 					}
 					capital_scope = {
@@ -245,18 +227,13 @@ emf_horde_invasion = {
 				if = {
 					limit = {
 						ROOT = { 
-							AND = {
-								has_landed_title = e_mongol_empire
-								ai = yes
-							}
+							has_landed_title = e_mongol_empire
+							ai = yes
 						}
-						region = {
-							NAND = {
-								emf_mongol_core_annexation
-								emf_mongol_extended_annexation
-								emf_region_mongol_core_domination
-								emf_region_mongol_extended_domination
-							}
+						NOR = {
+							region = emf_region_mongol_core
+							region = emf_region_mongol_extended_annexation
+							region = emf_region_mongol_extended_domination
 						}
 					}
 					FROM = {
