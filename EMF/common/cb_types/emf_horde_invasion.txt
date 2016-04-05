@@ -141,8 +141,8 @@ emf_horde_invasion = {
 							ai = yes
 						}
 						OR = {
-							region = emf_mongol_core_annexation
-							region = emf_mongol_extended_annexation
+							region = emf_region_mongol_core_annexation
+							region = emf_region_mongol_extended_annexation
 						}
 					}
 					ROOT = {
@@ -231,9 +231,8 @@ emf_horde_invasion = {
 							ai = yes
 						}
 						NOR = {
-							region = emf_region_mongol_core_annexation
+							region = emf_region_mongol_core
 							region = emf_region_mongol_extended_annexation
-							region = emf_region_mongol_core_domination
 							region = emf_region_mongol_extended_domination
 						}
 					}
