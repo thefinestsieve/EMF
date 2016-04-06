@@ -6,12 +6,13 @@
 	law = agnatic_succession
 	law = succ_ultimogeniture
 }
-1217.1.1 = {
-	holder = 172005
+1218.1.1 = {
+	holder = 125520
+	liege = e_mongol_empire
 	active = yes
 }
 1241.12.11={
-	holder =  217265
+	holder =  478011
 }
 1248.1.1={
 	holder = 0

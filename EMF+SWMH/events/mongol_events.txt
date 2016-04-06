@@ -6320,7 +6320,7 @@ character_event = {
 		create_character = {
 			name="Chagatai" 
 			age = 27
-			dynasty=11100
+			dynasty=7380
 			religion="tengri_pagan"
 			culture="mongol"
 			trait="skilled_tactician"
@@ -6331,28 +6331,9 @@ character_event = {
 		new_character = {
 			set_father = ROOT
 			set_mother = event_target:borte
+			save_event_target_as = chagatai
 			prestige = 75
-			k_chagatai = {
-				set_title_landless = { title = THIS status = yes }
-				set_title_flag = temporary_landless_title
-				activate_title = { title = k_chagatai status = yes }
-				grant_title = PREV
-			}
-			set_defacto_liege = ROOT
-			if = {
-				limit = {
-					has_dlc = "Horse Lords"
-				}
-				set_government_type = nomadic_government
-				manpower = 250
-				population = 1200
-			}
-			if = {
-				limit = {
-					NOT = { has_dlc = "Horse Lords" }
-				}
-				set_government_type = tribal_government
-			}	
+				
 		}
 		create_character = {
 			name="Ogodei" # Ögedei Khan
@@ -6368,32 +6349,11 @@ character_event = {
 			set_father = ROOT
 			set_mother = event_target:borte
 			prestige = 200
-			k_golden_horde = {
-				set_title_landless = { title = THIS status = yes }
-				set_title_flag = temporary_landless_title
-				activate_title = { title = k_golden_horde status = yes }
-				grant_title = PREV
-			}
-			set_defacto_liege = ROOT
-			if = {
-				limit = {
-					has_dlc = "Horse Lords"
-				}
-				set_government_type = nomadic_government
-				manpower = 250
-				population = 1200
-			}
-			if = {
-				limit = {
-					NOT = { has_dlc = "Horse Lords" }
-				}
-				set_government_type = tribal_government
-			}
 		}
 		create_character = {
 			name="Jochi"
 			age = 29
-			dynasty=11100
+			dynasty=7379
 			religion="tengri_pagan"
 			culture="mongol"
 			trait="skilled_tactician"
@@ -6404,33 +6364,13 @@ character_event = {
 		new_character = {
 			set_father = ROOT
 			set_mother = event_target:borte
+			save_event_target_as = jochi
 			prestige = 100
-			k_il-khanate = {
-				set_title_landless = { title = THIS status = yes }
-				set_title_flag = temporary_landless_title
-				activate_title = { title = k_il-khanate status = yes }
-				grant_title = PREV
-			}
-			set_defacto_liege = ROOT
-			if = {
-				limit = {
-					has_dlc = "Horse Lords"
-				}
-				set_government_type = nomadic_government
-				manpower = 250
-				population = 1200
-			}
-			if = {
-				limit = {
-					NOT = { has_dlc = "Horse Lords" }
-				}
-				set_government_type = tribal_government
-			}
 		}
 		create_character = {
 			name="Tolui"
 			age = 18
-			dynasty=11100
+			dynasty=101916
 			religion="tengri_pagan"
 			culture="mongol"
 			random_traits = yes
@@ -6438,6 +6378,7 @@ character_event = {
 		new_character = {
 			set_father = ROOT
 			set_mother = event_target:borte
+			save_event_target_as = tolui
 		}
 		create_character = {
 			name="Jebe"
@@ -7071,6 +7012,114 @@ character_event = {
 					}
 				}
 			}
+		}
+	}
+}
+#Creating Clans for Genghisid sons
+character_event = {
+	id = 60540
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				completely_controls = d_zhetysu
+				event_target:chagatai = {
+					is_landed = no
+					prisoner = no
+				}
+			}
+			event_target:chagatai = {
+				k_chagatai = {
+				set_title_landless = { title = THIS status = yes }
+				activate_title = { title = k_chagatai status = yes }
+				grant_title = PREV
+				}
+				set_defacto_liege = ROOT
+				if = {
+					limit = {
+						has_dlc = "Horse Lords"
+					}
+					set_government_type = nomadic_government
+					manpower = 2500
+					population = 12000
+				}
+				if = {
+					limit = {
+						NOT = { has_dlc = "Horse Lords" }
+					}
+					set_government_type = tribal_government
+				}
+			}
+			#TODO: Insert functioning code to grant land to serve as seed for future clan growth
+			#Character must be given landed title for clan title to persist
+		}
+		if = {
+			limit = {
+				completely_controls = d_khwarazm
+				event_target:jochi = {
+					is_landed = no
+					prisoner = no
+				}
+			}
+			event_target:jochi = {
+				k_golden_horde = {
+					set_title_landless = { title = THIS status = yes }
+					activate_title = { title = k_golden_horde status = yes }
+					grant_title = PREV
+				}
+				set_defacto_liege = ROOT
+				if = {
+					limit = {
+						has_dlc = "Horse Lords"
+					}
+					set_government_type = nomadic_government
+					manpower = 2500
+					population = 12000
+				}
+				if = {
+					limit = {
+						NOT = { has_dlc = "Horse Lords" }
+					}
+					set_government_type = tribal_government
+				}
+			}
+			#TODO: Insert functioning code to grant land to serve as seed for future clan growth
+			#Character must be given landed title for clan title to persist
+		}
+		if = {
+			limit = {
+				completely_controls = d_merv
+				event_target:tolui = {
+					is_landed = no
+					prisoner = no
+				}
+			}
+			event_target:tolui = {
+				k_il-khanate = {
+					set_title_landless = { title = THIS status = yes }
+					activate_title = { title = k_il-khanate status = yes }
+					grant_title = PREV
+				}
+				set_defacto_liege = ROOT
+				if = {
+					limit = {
+						has_dlc = "Horse Lords"
+					}
+					set_government_type = nomadic_government
+					manpower = 2500
+					population = 12000
+				}
+				if = {
+					limit = {
+						NOT = { has_dlc = "Horse Lords" }
+					}
+					set_government_type = tribal_government
+				}
+			}
+			#TODO: Insert functioning code to grant land to serve as seed for future clan growth
+			#Character must be given landed title for clan title to persist
 		}
 	}
 }

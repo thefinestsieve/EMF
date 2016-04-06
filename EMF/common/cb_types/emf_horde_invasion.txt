@@ -90,6 +90,7 @@ emf_horde_invasion = {
 						who = FROM
 						type = invasion
 					}
+					character_event = { id = 60540 }
 				}
 				if = {
 					limit = { has_nickname = no }

@@ -1,0 +1,639 @@
+125502 = {
+	name="Jochi"
+	dynasty=7379
+	martial=8
+	religion="tengri_pagan"
+	culture="mongol"
+	father=125501
+	mother=172004
+	trait="skilled_tactician"
+	trait="hunter"
+	trait="diligent"
+	trait="patient"
+	1181.1.1={
+		birth="1181.1.1"
+	}
+	1227.1.2={
+		death="1227.1.2"
+	}
+}
+125503 = {
+	name="Batu"
+	dynasty=7379
+	martial=10
+	religion="tengri_pagan"
+	culture="mongol"
+	trait="skilled_tactician"
+	trait="cruel"
+	trait="brave"
+	trait="charitable"
+	father=125502
+	1207.1.1={
+		birth="1207.1.1"
+	}
+	
+	1241.1.1 = {
+		effect = {
+			wealth = 5000
+			create_character = {
+				random_traits = yes
+				dynasty = random
+				religion = tengri_pagan
+				culture = mongol
+				female = no
+				age = 30
+				attributes = {
+					martial = 12
+				}
+				trait = brilliant_strategist
+			}
+			
+			new_character = {
+				spawn_unit = {
+					province = 618 # Guryev
+					troops =
+					{
+						horse_archers = { 8000 8000 }
+						light_cavalry = { 5666 5666 }
+						light_infantry = { 1800 1800 }
+						heavy_infantry = { 800 800 }
+						knights = { 150 150 }
+					}
+				}
+			}
+			
+			create_character = {
+				random_traits = yes
+				dynasty = random
+				religion = tengri_pagan
+				culture = mongol
+				female = no
+				age = 40
+				attributes = {
+					martial = 12
+				}
+				trait = brilliant_strategist
+			}
+			new_character = {
+				spawn_unit = {
+					province = 618 # Guryev
+					troops =
+					{
+						horse_archers = { 8000 8000 }
+						light_cavalry = { 5666 5666 }
+						light_infantry = { 1800 1800 }
+						heavy_infantry = { 800 800 }
+						knights = { 150 150 }
+					}
+				}
+			}
+			#create_character = {
+			#	random_traits = yes
+			#	dynasty = random
+			#	religion = tengri_pagan
+			#	culture = mongol
+			#	female = no
+			#	age = 40
+			#	attributes = {
+			#		martial = 12
+			#	}
+			#	trait = brilliant_strategist
+			#}
+			#new_character = {
+			#	spawn_unit = {
+			#		province = 618 # Guryev
+			#		troops =
+			#		{
+			#			horse_archers = { 8000 8000 }
+			#			light_cavalry = { 5666 5666 }
+			#			light_infantry = { 1800 1800 }
+			#			heavy_infantry = { 800 800 }
+			#			knights = { 150 150 }
+			#		}
+			#	}
+			#}
+			create_character = {
+				random_traits = yes
+				dynasty = random
+				religion = tengri_pagan
+				culture = mongol
+				female = no
+				age = 36
+				attributes = {
+					martial = 11
+				}
+				trait = brilliant_strategist
+			}
+			new_character = {
+				spawn_unit = {
+					province = 620 # Itil
+					troops =
+					{
+						horse_archers = { 8000 8000 }
+						light_cavalry = { 5666 5666 }
+						light_infantry = { 1800 1800 }
+						heavy_infantry = { 800 800 }
+						knights = { 150 150 }
+					}
+				}
+			}
+			create_character = {
+				random_traits = yes
+				dynasty = random
+				religion = tengri_pagan
+				culture = mongol
+				female = no
+				age = 34
+				attributes = {
+					martial = 12
+				}
+				trait = brilliant_strategist
+			}
+			new_character = {
+				spawn_unit = {
+					province = 620 # Itil
+					troops =
+					{
+						horse_archers = { 8000 8000 }
+						light_cavalry = { 5666 5666 }
+						light_infantry = { 1800 1800 }
+						heavy_infantry = { 800 800 }
+						knights = { 150 150 }
+					}
+				}
+			}
+			#create_character = {
+			#	random_traits = yes
+			#	dynasty = random
+			#	religion = tengri_pagan
+			#	culture = mongol
+			#	female = no
+			#	age = 26
+			#	attributes = {
+			#		martial = 12
+			#	}
+			#	trait = brilliant_strategist
+			#}
+			#new_character = {
+			#	spawn_unit = {
+			#		province = 620 # Itil
+			#		troops =
+			#		{
+			#			horse_archers = { 8000 8000 }
+			#			light_cavalry = { 5666 5666 }
+			#			light_infantry = { 1800 1800 }
+			#			heavy_infantry = { 800 800 }
+			#			knights = { 150 150 }
+			#		}
+			#	}
+			#}
+		}
+	}
+	
+	1255.1.1={
+		death="1255.1.1"
+	}
+}
+125504 = {
+	name="Berke"
+	dynasty=7379
+	religion="tengri_pagan"
+	culture="mongol"
+	father=125502
+	1209.1.2={
+		birth="1209.1.2"
+	}
+	1240.1.2={
+		religion="sunni"
+	}
+	1266.1.2={
+		death="1266.1.2"
+	}
+}
+125505 = {
+	name="Sartag"
+	dynasty=7379
+	religion="tengri_pagan"
+	culture="mongol"
+	father=125503
+	1223.1.2={
+		birth="1223.1.2"
+	}
+	1254.1.2={
+		religion="nestorian"
+	}
+	1256.1.2={
+		death="1256.1.2"
+	}
+}
+34911 = {
+	name="Shiban"
+	dynasty=7379
+	religion="tengri_pagan"
+	culture="mongol"
+	father=125502
+	1210.1.1={
+		birth="1210.1.1"
+	}
+	1241.12.11={
+		dynasty=1000054551
+	}
+	1260.1.1={
+		death="1260.1.1"
+	}
+}
+34912 = {
+	name="Orda"
+	dynasty=7379
+	religion="tengri_pagan"
+	culture="mongol"
+	father=125502
+	1205.1.1={
+		birth="1205.1.1"
+	}
+	1241.12.11={
+		dynasty=1000054552
+	}
+	1251.1.1={
+		death="1251.1.1"
+	}
+}
+125534 = {
+	name="Tuq-Temur"
+	dynasty=7379
+	religion="tengri_pagan"
+	culture="mongol"
+	father=125502
+	1219.1.1={
+		birth="1219.1.1"
+	}
+	1241.12.11={
+		dynasty=1000054553
+	}
+	1275.1.2={
+		death="1275.1.2"
+	}
+}
+217341 = {
+	name = "Khugurchin" #fictional name
+	dynasty = 7379
+	religion = tengri_pagan
+	culture = mongol
+	father = 125502
+	female = yes
+	1211.1.1 = {
+		birth = yes
+	}
+	1268.1.1 = {
+		death = yes
+	}
+}
+93062 = {
+	name="Chagatai" 
+	dynasty=7380
+	martial=8
+	stewardship=8
+	religion="tengri_pagan"
+	culture="mongol"
+	father=125501
+	mother=172004
+	trait="skilled_tactician"
+	trait="wroth"
+	trait="just"
+	trait="drunkard"
+	1183.1.1={
+		birth="1183.1.1"
+	}
+	1242.1.1={
+		death="1242.1.1"
+	}
+}
+93063 = {
+	name="Mö'etüken" 
+	dynasty=7380
+	religion="tengri_pagan"
+	culture="mongol"
+	father=93062
+	1200.1.1={
+		birth="1200.1.1"
+	}
+	1240.1.1={
+		death="1240.1.1"
+	}
+}
+93065 = {
+	name="Yesü Mongke" 
+	dynasty=7380
+	religion="tengri_pagan"
+	culture="mongol"
+	father=93062
+	1202.1.1={
+		birth="1202.1.1"
+	}
+	1252.1.1={
+		death="1252.1.1"
+	}
+}
+93067 = {
+	name="Baidar" 
+	dynasty=7380
+	religion="tengri_pagan"
+	culture="mongol"
+	father=93062
+	1206.1.1={
+		birth="1206.1.1"
+	}
+	1247.1.1={
+		death="1247.1.1"
+	}
+}
+93069 = {
+	name="Yesünto'a" 
+	dynasty=7380
+	religion="tengri_pagan"
+	culture="mongol"
+	father=93062
+	1208.1.1={
+		birth="1208.1.1"
+	}
+	1258.1.1={
+		death="1258.1.1"
+	}
+}
+93071 = {
+	name="Sarban" 
+	dynasty=7380
+	religion="tengri_pagan"
+	culture="mongol"
+	father=93062
+	1210.1.1={
+		birth="1210.1.1"
+	}
+	1260.1.1={
+		death="1260.1.1"
+	}
+}
+93073 = {
+	name="Buri" 
+	dynasty=7380
+	religion="tengri_pagan"
+	culture="mongol"
+	father=93062
+	1212.1.1={
+		birth="1212.1.1"
+	}
+	1252.1.1={
+		death="1252.1.1"
+	}
+}
+125520 = {
+	name="Tolui"
+	dynasty=101916
+	martial=8
+	diplomacy=8
+	religion="tengri_pagan"
+	culture="mongol"
+	father=125501
+	mother=172004
+	trait="skilled_tactician"
+	trait="strategist"
+	trait="humble"
+	trait="kind"
+	1192.1.2={
+		birth="1192.1.2"
+	}
+	1214.1.1={
+		add_spouse=172010
+	}
+	1227.12.2={
+		dynasty=101916
+	}
+	1232.1.2={
+		death="1232.1.2"
+	}
+}
+125526 = {
+	name="Arig Bokha"
+	# AKA: Arig Bokha
+	dynasty=101916
+	religion="tengri_pagan"
+	culture="mongol"
+	father=125520
+	mother=172010
+	1219.1.2={
+		birth="1219.1.2"
+	}
+	1227.12.2={
+		dynasty=101916
+	}
+	1266.1.2={
+		death="1266.1.2"
+	}
+}
+478011 = {
+	name="Hulegu"
+	# AKA: Hulagu
+	dynasty=101916
+	martial=10
+	religion="tengri_pagan"
+	culture="mongol"
+	trait="skilled_tactician"
+	trait="cruel"
+	trait="zealous"
+	trait="ambitious"
+	father=125520
+	mother=172010
+	1217.1.1={
+		birth="1217.1.1"
+	}	
+	1232.1.1={
+		effect = {
+			wealth = 5000
+			create_character = {
+				random_traits = yes
+				dynasty = random
+				religion = tengri_pagan
+				culture = mongol
+				female = no
+				age = 30
+				attributes = {
+					martial = 12
+				}
+				trait = brilliant_strategist
+			}
+			new_character = {
+				spawn_unit = {
+					province = 658 # Hamadan
+					troops =
+					{
+						horse_archers = { 8000 8000 }
+						light_cavalry = { 5666 5666 }
+						light_infantry = { 1800 1800 }
+						heavy_infantry = { 800 800 }
+						knights = { 150 150 }
+					}
+				}
+			}
+			create_character = {
+				random_traits = yes
+				dynasty = random
+				religion = tengri_pagan
+				culture = mongol
+				female = no
+				age = 40
+				attributes = {
+					martial = 12
+				}
+				trait = brilliant_strategist
+			}
+			new_character = {
+				spawn_unit = {
+					province = 658 # Hamadan
+					troops =
+					{
+						horse_archers = { 8000 8000 }
+						light_cavalry = { 5666 5666 }
+						light_infantry = { 1800 1800 }
+						heavy_infantry = { 800 800 }
+						knights = { 150 150 }
+					}
+				}
+			}
+			create_character = {
+				random_traits = yes
+				dynasty = random
+				religion = tengri_pagan
+				culture = mongol
+				female = no
+				age = 40
+				attributes = {
+					martial = 12
+				}
+				trait = brilliant_strategist
+			}
+			new_character = {
+				spawn_unit = {
+					province = 658 # Hamadan
+					troops =
+					{
+						horse_archers = { 8000 8000 }
+						light_cavalry = { 5666 5666 }
+						light_infantry = { 1800 1800 }
+						heavy_infantry = { 800 800 }
+						knights = { 150 150 }
+					}
+				}
+			}
+			create_character = {
+				random_traits = yes
+				dynasty = random
+				religion = tengri_pagan
+				culture = mongol
+				female = no
+				age = 31
+				attributes = {
+					martial = 12
+				}
+				trait = brilliant_strategist
+			}
+			new_character = {
+				spawn_unit = {
+					province = 659 # Qom
+					troops =
+					{
+						horse_archers = { 8000 8000 }
+						light_cavalry = { 5666 5666 }
+						light_infantry = { 1800 1800 }
+						heavy_infantry = { 800 800 }
+						knights = { 150 150 }
+					}
+				}
+			}
+			create_character = {
+				random_traits = yes
+				dynasty = random
+				religion = tengri_pagan
+				culture = mongol
+				female = no
+				age = 36
+				attributes = {
+					martial = 11
+				}
+				trait = brilliant_strategist
+			}
+			new_character = {
+				spawn_unit = {
+					province = 659 # Qom
+					troops =
+					{
+						horse_archers = { 8000 8000 }
+						light_cavalry = { 5666 5666 }
+						light_infantry = { 1800 1800 }
+						heavy_infantry = { 800 800 }
+						knights = { 150 150 }
+					}
+				}
+			}
+			create_character = {
+				random_traits = yes
+				dynasty = random
+				religion = tengri_pagan
+				culture = mongol
+				female = no
+				age = 36
+				attributes = {
+					martial = 11
+				}
+				trait = brilliant_strategist
+			}
+			new_character = {
+				spawn_unit = {
+					province = 659 # Qom
+					troops =
+					{
+						horse_archers = { 8000 8000 }
+						light_cavalry = { 5666 5666 }
+						light_infantry = { 1800 1800 }
+						heavy_infantry = { 800 800 }
+						knights = { 150 150 }
+					}
+				}
+			}
+		}
+	}
+	
+	1265.2.8={
+		death="1265.2.8"
+	}
+}
+217265 = {
+	name = Möngke # Möngke Khan
+	dynasty = 101916
+	religion = tengri_pagan
+	culture = mongol
+	father = 125520
+	mother = 172010
+	1209.1.10 = {
+		birth = yes
+	}
+	1259.8.11 = {
+		death = yes
+	}
+}
+217266 = {
+	name = Kublai # Kublai Khan
+	dynasty = 101916
+	religion = buddhist
+	culture = mongol
+	father = 125520
+	mother = 172010
+	1215.9.23 = {
+		birth = yes
+	}
+	1243.1.1 = {
+		add_spouse = 217267
+	}
+	1294.2.18 = {
+		death = yes
+	}
+}
