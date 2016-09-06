@@ -16,7 +16,7 @@ sect_madhyamaka = {
 
 sect_svatantrika = {
 	icon = 43
-	general_opinion = 10
+	general_opinion = 5
 	monthly_character_piety = 0.5
 }
 
