@@ -24,7 +24,7 @@ decisions = {
 		}
 		
 		effect = {
-			character_event = { id = emf_not_viet_buddhist_sect.1 }
+			character_event = { id = emf_not_viet.1 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -56,7 +56,7 @@ decisions = {
 		}
 		
 		effect = {
-			character_event = { id = emf_not_viet_buddhist_construct_monument.1 }
+			character_event = { id = emf_not_viet.2 }
 		}
 		ai_will_do = {
 			factor = 1

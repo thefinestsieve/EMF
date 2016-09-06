@@ -9,13 +9,13 @@ emf_not_viet_buddhist_monument_desc;Construct a Buddhist monument to display bot
 #
 ###EVENTS;;;;;;;;;;;;;;x
 #
-EVTDESC_emf_not_viet_buddhist_sect.1;Choose a Mahayana sect to patronise:;;;;;;;;;;;;;;x
-EVTOPTA_emf_not_viet_buddhist_sect.1;Zen Buddhism;;;;;;;;;;;;;;x
-EVTOPTB_emf_not_viet_buddhist_sect.1;Pure Land Buddhism;;;;;;;;;;;;;;x
-EVTOPTC_emf_not_viet_buddhist_sect.1;Yogacara Buddhism;;;;;;;;;;;;;;x
-EVTDESC_emf_not_viet_buddhist_construct_monument.1;Choose a Buddhist monument to sponsor the construction of:;;;;;;;;;;;;;;x
-EVTOPTA_emf_not_viet_buddhist_construct_monument.1;Construct a rock pillar inscription;;;;;;;;;;;;;;x
-EVTOPTB_emf_not_viet_buddhist_construct_monument.1;Construct a stupa;;;;;;;;;;;;;;x
+EVTDESC_emf_not_viet.1;Choose a Mahayana sect to patronise:;;;;;;;;;;;;;;x
+EVTOPTA_emf_not_viet.1;Zen Buddhism;;;;;;;;;;;;;;x
+EVTOPTB_emf_not_viet.1;Pure Land Buddhism;;;;;;;;;;;;;;x
+EVTOPTC_emf_not_viet.1;Yogacara Buddhism;;;;;;;;;;;;;;x
+EVTDESC_emf_not_viet.2;Choose a Buddhist monument to sponsor the construction of:;;;;;;;;;;;;;;x
+EVTOPTA_emf_not_viet.2;Construct a rock pillar inscription;;;;;;;;;;;;;;x
+EVTOPTB_emf_not_viet.2;Construct a stupa;;;;;;;;;;;;;;x
 #
 ###MODIFIERS;;;;;;;;;;;;;;x
 #
