@@ -11,14 +11,14 @@ character_event = { # Choose Mahayana sub-sect
 	option = {
 		name = EVTOPTA_emf_not_viet.1
 		add_character_modifier = {
-			name = sect_zen
+			name = sect_madhyamaka
 			duration = -1
 		}
 	}
 	option = {
 		name = EVTOPTB_emf_not_viet.1
 		add_character_modifier = {
-			name = sect_pure_land
+			name = sect_svatantrika
 			duration = -1
 		}
 	}

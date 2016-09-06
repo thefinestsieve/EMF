@@ -1,20 +1,22 @@
 # Character modifiers
 
-sect_zen = {
-	icon = 43
-	general_opinion = 10
-	monthly_character_piety = 0.5
-}
-
-sect_pure_land = {
-	icon = 43
-	global_revolt_risk = -0.05
-	monthly_character_piety = 0.5
-}
-
 sect_yogacara = {
 	icon = 43
+	learning = 1
+	diplomacy = 2
+	monthly_character_piety = 0.5
+}
+
+sect_madhyamaka = {
+	icon = 43
 	learning = 2
+	diplomacy = 1
+	monthly_character_piety = 0.5
+}
+
+sect_svatantrika = {
+	icon = 43
+	general_opinion = 10
 	monthly_character_piety = 0.5
 }
 

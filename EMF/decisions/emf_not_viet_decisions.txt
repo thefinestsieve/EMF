@@ -10,8 +10,8 @@ decisions = {
 			religion = buddhist
 			trait = mahayana_buddhist
 			NOR = {
-				has_character_modifier = sect_zen
-				has_character_modifier = sect_pure_land
+				has_character_modifier = sect_madhyamaka
+				has_character_modifier = sect_svatantrika
 				has_character_modifier = sect_yogacara
 			}
 		}
@@ -20,7 +20,7 @@ decisions = {
 			is_adult = yes
 			has_regent = no
 			piety = 50
-			learning = 8
+			learning = 10
 		}
 		
 		effect = {
