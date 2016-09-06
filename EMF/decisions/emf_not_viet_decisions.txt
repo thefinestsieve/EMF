@@ -1,0 +1,65 @@
+# -*- ck2.decisions -*-
+
+decisions = {
+
+	# Choose Buddhist sub-sect
+	emf_not_viet_buddhist_sub_sect = {
+		only_rulers = yes
+		potential = {
+			is_ruler = yes
+			religion = buddhist
+			trait = mahayana_buddhist
+			NOR = {
+				has_character_modifier = sect_zen
+				has_character_modifier = sect_pure_land
+				has_character_modifier = sect_yogacara
+			}
+		}
+		
+		allow = {
+			is_adult = yes
+			has_regent = no
+			piety = 50
+			learning = 8
+		}
+		
+		effect = {
+			character_event = { id = emf_not_viet_buddhist_sect.1 }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	# Build a Buddhist monument
+	emf_not_viet_buddhist_monument = {
+		only_rulers = yes
+		potential = {
+			is_ruler = yes
+			religion = buddhist
+			NOT = {
+				has_character_modifier = built_buddhist_monument
+			}
+			NOR = {
+				capital_scope = {
+					has_province_modifier = buddhist_pillar_inscription
+				}
+				capital_scope = {
+					has_province_modifier = buddhist_stupa
+				}
+			}
+		}
+		
+		allow = {
+			prestige = 100
+			wealth = 100
+		}
+		
+		effect = {
+			character_event = { id = emf_not_viet_buddhist_construct_monument.1 }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

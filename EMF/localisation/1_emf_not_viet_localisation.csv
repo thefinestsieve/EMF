@@ -1,0 +1,33 @@
+#CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+#
+###DECISIONS;;;;;;;;;;;;;;x
+#
+emf_not_viet_buddhist_sub_sect;Choose Your Mahayana Sect;;;;;;;;;;;;;;x
+emf_not_viet_buddhist_sub_sect_desc;The Mahayana branch of Buddhism is a broad denomination, with numerous sects within it.;;;;;;;;;;;;;;x
+emf_not_viet_buddhist_monument;Build A Buddhist Monument;;;;;;;;;;;;;;x
+emf_not_viet_buddhist_monument_desc;Construct a Buddhist monument to display both your wealth and your dedication to the Dharma.;;;;;;;;;;;;;;x
+#
+###EVENTS;;;;;;;;;;;;;;x
+#
+EVTDESC_emf_not_viet_buddhist_sect.1;Choose a Mahayana sect to patronise:;;;;;;;;;;;;;;x
+EVTOPTA_emf_not_viet_buddhist_sect.1;Zen Buddhism;;;;;;;;;;;;;;x
+EVTOPTB_emf_not_viet_buddhist_sect.1;Pure Land Buddhism;;;;;;;;;;;;;;x
+EVTOPTC_emf_not_viet_buddhist_sect.1;Yogacara Buddhism;;;;;;;;;;;;;;x
+EVTDESC_emf_not_viet_buddhist_construct_monument.1;Choose a Buddhist monument to sponsor the construction of:;;;;;;;;;;;;;;x
+EVTOPTA_emf_not_viet_buddhist_construct_monument.1;Construct a rock pillar inscription;;;;;;;;;;;;;;x
+EVTOPTB_emf_not_viet_buddhist_construct_monument.1;Construct a stupa;;;;;;;;;;;;;;x
+#
+###MODIFIERS;;;;;;;;;;;;;;x
+#
+sect_zen;Zen Buddhism;;;;;;;;;;;;;;x
+sect_zen_desc;This character patronises Zen Buddhism, a sect that places less emphasis on mere knowledge of Buddhist scripture and instead focuses more on achieving understanding through physical action.;;;;;;;;;;;;;;x
+sect_pure_land;Pure Land Buddhism;;;;;;;;;;;;;;x
+sect_pure_land_desc;This character patronises Pure Land Buddhism, a sect that advocates greater equality within the Buddhist community.;;;;;;;;;;;;;;x
+sect_yogacara;Yogacara Buddhism;;;;;;;;;;;;;;x
+sect_yogacara_desc;This character patronises Yogacara Buddhism, a sect that uses meditation and yoga in order to understand the mutual co-dependence of all beings.;;;;;;;;;;;;;;x
+built_buddhist_monument;Buddhist Monument Constructed;;;;;;;;;;;;;;x
+built_buddhist_monument_desc;This character has constructed a Buddhist monument in order to display their wealth and dedication to the Dharma.;;;;;;;;;;;;;;x
+buddhist_pillar_inscription;Pillar Inscription;;;;;;;;;;;;;;x
+buddhist_pillar_inscription_desc;This is a Buddhist rock pillar inscription, emulating the style of those created by Ashoka the Great and as such is a site of pilgrimage.;;;;;;;;;;;;;;x
+buddhist_stupa;Stupa;;;;;;;;;;;;;;x
+buddhist_stupa_desc;This is a stupa, a Buddhist temple which contains a relic linked to a Buddha or a famous Buddhist and as such is an important of site of pilgramage.;;;;;;;;;;;;;;x

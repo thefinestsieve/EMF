@@ -1,0 +1,38 @@
+# Character modifiers
+
+sect_zen = {
+	icon = 43
+	general_opinion = 10
+	monthly_character_piety = 0.5
+}
+
+sect_pure_land = {
+	icon = 43
+	global_revolt_risk = -0.05
+	monthly_character_piety = 0.5
+}
+
+sect_yogacara = {
+	icon = 43
+	learning = 2
+	monthly_character_piety = 0.5
+}
+
+built_buddhist_monument = {
+	icon = 43
+	monthly_character_piety = 0.25
+}
+
+# Province modifiers
+
+buddhist_pillar_inscription = {
+	icon = 43
+	local_tax_modifier = 0.1
+	tradevalue = 2
+}
+
+buddhist_stupa = {
+	icon = 43
+	local_tax_modifier = 0.2
+	tradevalue = 4
+}

@@ -1,0 +1,74 @@
+namespace = emf_not_viet_buddhist_sect
+namespace = emf_not_viet_buddhist_construct_monument
+
+character_event = {
+	id = emf_not_viet_buddhist_sect.1
+	desc = EVTDESC_emf_not_viet_buddhist_sect.1
+	picture = GFX_evt_bishop
+	border = GFX_event_normal_frame_religion
+
+	is_triggered_only = yes
+	
+	option = {
+		name = EVTOPTA_emf_not_viet_buddhist_sect.1
+		add_character_modifier = {
+			name = sect_zen
+			duration = -1
+		}
+	}
+	option = {
+		name = EVTOPTB_emf_not_viet_buddhist_sect.1
+		add_character_modifier = {
+			name = sect_pure_land
+			duration = -1
+		}
+	}
+	option = {
+		name = EVTOPTC_emf_not_viet_buddhist_sect.1
+		add_character_modifier = {
+			name = sect_yogacara
+			duration = -1
+		}
+	}
+}
+
+character_event = {
+	id = emf_not_viet_buddhist_construct_monument.1
+	desc = EVTDESC_emf_not_viet_buddhist_construct_monument.1
+	picture = GFX_evt_bishop
+	border = GFX_event_normal_frame_religion
+
+	is_triggered_only = yes
+	
+	option = { # Pillar Inscription
+		name = EVTOPTA_emf_not_viet_buddhist_construct_monument.1
+		add_character_modifier = {
+			name = built_buddhist_monument
+			duration = -1
+		}
+		wealth = -100
+		piety = 100
+		capital_scope = {
+			add_province_modifier = {
+				name = buddhist_pillar_inscription
+				duration = -1
+			}
+		}
+	}
+	
+	option = { # Stupa
+		name = EVTOPTB_emf_not_viet_buddhist_construct_monument.1
+		add_character_modifier = {
+			name = built_buddhist_monument
+			duration = -1
+		}
+		wealth = -200
+		piety = 200
+		capital_scope = {
+			add_province_modifier = {
+				name = buddhist_stupa
+				duration = -1
+			}
+		}
+	}
+}
