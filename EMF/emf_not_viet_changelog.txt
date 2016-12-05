@@ -1,0 +1,7 @@
+EMF/Not VIET changelog
+
+5/12/2016
+	CHANGES
+		Buddhism features:
+			- Buddhists of the Mahayana branch can now select a further school of thought providing minor bonuses.
+			- All Buddhist rulers can now choose to build one of two monuments in their capital province, either of which provide bonuses to tax and trade power.
