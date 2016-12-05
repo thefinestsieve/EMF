@@ -112,6 +112,7 @@ government_flavor = {
 	trigger = {
 		government = muslim_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		NOT = {
 			has_law = administration_2
 		}
@@ -167,6 +168,7 @@ government_flavor = {
 			government = bogomilist_government
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		NOR = {
 			religion = norse_pagan
 			religion = norse_pagan_reformed
@@ -200,6 +202,7 @@ government_flavor = {
 			government = bogomilist_government
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = norse_pagan
 			religion = norse_pagan_reformed
@@ -230,6 +233,7 @@ government_flavor = {
 			government = bogomilist_government
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = tengri_pagan
 			religion = tengri_pagan_reformed
@@ -260,6 +264,7 @@ government_flavor = {
 			government = bogomilist_government
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		religion_group = indian_group
 		NOT = {
 			has_law = administration_2
@@ -448,6 +453,7 @@ government_flavor = {
 	trigger = {
 		government = muslim_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		NOT = {
 			has_law = administration_2
 		}
@@ -525,6 +531,7 @@ government_flavor = {
 			government = bogomilist_government
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		NOR = {
 			religion = norse_pagan
 			religion = norse_pagan_reformed
@@ -573,6 +580,7 @@ government_flavor = {
 			government = bogomilist_government
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		religion_group = zoroastrian_group
 		NOT = {
 			has_law = administration_2
@@ -614,6 +622,7 @@ government_flavor = {
 			government = bogomilist_government
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = norse_pagan
 			religion = norse_pagan_reformed
@@ -658,6 +667,7 @@ government_flavor = {
 			government = bogomilist_government
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = tengri_pagan
 			religion = tengri_pagan_reformed
@@ -703,6 +713,7 @@ government_flavor = {
 		}
 		NOT = { has_law = succ_feudal_elective }
 		religion_group = indian_group
+		mercenary = no
 		NOT = {
 			has_law = administration_2
 		}
@@ -823,6 +834,7 @@ government_flavor = {
 	trigger = {
 		government = muslim_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		NOT = {
 			has_law = administration_2
 		}
@@ -866,6 +878,7 @@ government_flavor = {
 			government = bogomilist_government
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		NOR = {
 			religion = norse_pagan
 			religion = norse_pagan_reformed
@@ -896,6 +909,7 @@ government_flavor = {
 			government = bogomilist_government
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = norse_pagan
 			religion = norse_pagan_reformed
@@ -923,6 +937,7 @@ government_flavor = {
 			government = bogomilist_government
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = tengri_pagan
 			religion = tengri_pagan_reformed
@@ -950,6 +965,7 @@ government_flavor = {
 			government = bogomilist_government
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		religion_group = indian_group
 		NOT = {
 			has_law = administration_2
@@ -970,8 +986,12 @@ government_flavor = {
 	priority = 1
 	trigger = {
 		has_law = administration_2
-		government = imperial_government
+		OR = {
+			government = imperial_government
+			government = bogomilist_imperial_government
+		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		NOR = {
 			religion = norse_pagan
 			religion = norse_pagan_reformed
@@ -997,6 +1017,7 @@ government_flavor = {
 		has_law = administration_2
 		government = imperial_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = norse_pagan
 			religion = norse_pagan_reformed
@@ -1019,6 +1040,7 @@ government_flavor = {
 		has_law = administration_2
 		government = imperial_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = tengri_pagan
 			religion = tengri_pagan_reformed
@@ -1041,6 +1063,7 @@ government_flavor = {
 		has_law = administration_2
 		government = imperial_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		religion_group = indian_group
 		has_law = law_voting_power_0
 		has_law = banish_voting_power_0
@@ -1060,6 +1083,7 @@ government_flavor = {
 		has_law = administration_2
 		government = muslim_imperial_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		has_law = law_voting_power_0
 		has_law = banish_voting_power_0
 		has_law = execution_voting_power_0
@@ -1094,7 +1118,10 @@ government_flavor = {
 	priority = 1
 	trigger = {
 		has_law = administration_2
-		government = imperial_government
+		OR = {
+			government = imperial_government
+			government = bogomilist_imperial_government
+		}
 		has_law = succ_feudal_elective
 		NOR = {
 			religion = norse_pagan
@@ -1161,8 +1188,12 @@ government_flavor = {
 	graphics = GFX_evt_emissary_byzantine
 	priority = 1
 	trigger = {
-		government = imperial_government
+		OR = {
+			government = imperial_government
+			government = bogomilist_imperial_government
+		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		NOR = {
 			religion = norse_pagan
 			religion = norse_pagan_reformed
@@ -1205,6 +1236,7 @@ government_flavor = {
 	trigger = {
 		government = imperial_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = norse_pagan
 			religion = norse_pagan_reformed
@@ -1244,6 +1276,7 @@ government_flavor = {
 	trigger = {
 		government = imperial_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = tengri_pagan
 			religion = tengri_pagan_reformed
@@ -1283,6 +1316,7 @@ government_flavor = {
 	trigger = {
 		government = imperial_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		religion_group = indian_group
 		has_law = administration_2
 		OR = {
@@ -1319,6 +1353,7 @@ government_flavor = {
 	trigger = {
 		government = muslim_imperial_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		has_law = administration_2
 		OR = {
 			NOT = { has_dlc = "Conclave" }
@@ -1387,7 +1422,10 @@ government_flavor = {
 	graphics = GFX_evt_emissary_byzantine
 	priority = 1
 	trigger = {
-		government = imperial_government
+		OR = {
+			government = imperial_government
+			government = bogomilist_imperial_government
+		}
 		has_law = succ_feudal_elective
 		NOR = {
 			religion = norse_pagan
@@ -1497,8 +1535,12 @@ government_flavor = {
 	graphics = GFX_evt_throne_room_byzantine
 	priority = 1
 	trigger = {
-		government = imperial_government
+		OR = {
+			government = imperial_government
+			government = bogomilist_imperial_government
+		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		NOR = {
 			religion = norse_pagan
 			religion = norse_pagan_reformed
@@ -1527,6 +1569,7 @@ government_flavor = {
 	trigger = {
 		government = imperial_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = norse_pagan
 			religion = norse_pagan_reformed
@@ -1552,6 +1595,7 @@ government_flavor = {
 	trigger = {
 		government = imperial_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = tengri_pagan
 			religion = tengri_pagan_reformed
@@ -1577,6 +1621,7 @@ government_flavor = {
 	trigger = {
 		government = imperial_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		religion_group = indian_group
 		has_law = administration_2
 		calc_true_if = {
@@ -1599,6 +1644,7 @@ government_flavor = {
 	trigger = {
 		government = muslim_imperial_government
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		has_law = administration_2
 		calc_true_if = {
 			amount = 6
@@ -1639,7 +1685,10 @@ government_flavor = {
 	graphics = GFX_evt_throne_room_byzantine
 	priority = 1
 	trigger = {
-		government = imperial_government
+		OR = {
+			government = imperial_government
+			government = bogomilist_imperial_government
+		}
 		has_law = succ_feudal_elective
 		NOR = {
 			religion = norse_pagan
@@ -1838,6 +1887,15 @@ government_flavor = {
 	}
 }
 
+government_flavor = {
+	name = gov_mercenary
+	graphics = GFX_evt_steppe_mercenaries
+	priority = 1
+	trigger = {
+		mercenary = yes
+	}
+}
+
 #####################################
 # Special Flavor Names (priority 2) #
 #####################################
@@ -1851,6 +1909,7 @@ government_flavor = {
 			government = feudal_government
 			government = bogomilist_government
 			government = imperial_government
+			government = bogomilist_imperial_government
 		}
 		religion_group = christian
 		OR = {
@@ -1883,6 +1942,7 @@ government_flavor = {
 			government = feudal_government
 			government = bogomilist_government
 			government = imperial_government
+			government = bogomilist_imperial_government
 		}
 		religion_group = christian
 		OR = {
@@ -1890,6 +1950,7 @@ government_flavor = {
 			has_landed_title = e_hre_french
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			NOT = { has_dlc = "Conclave" }
 			calc_true_if = {
@@ -1915,6 +1976,7 @@ government_flavor = {
 			government = feudal_government
 			government = bogomilist_government
 			government = imperial_government
+			government = bogomilist_imperial_government
 		}
 		religion_group = christian
 		has_law = succ_feudal_elective
@@ -1955,9 +2017,11 @@ government_flavor = {
 			government = feudal_government
 			government = bogomilist_government
 			government = imperial_government
+			government = bogomilist_imperial_government
 		}
 		religion_group = christian
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			has_landed_title = e_hre
 			has_landed_title = e_hre_french
@@ -1995,6 +2059,7 @@ government_flavor = {
 			government = feudal_government
 			government = bogomilist_government
 			government = imperial_government
+			government = bogomilist_imperial_government
 		}
 		religion_group = christian
 		has_law = succ_feudal_elective
@@ -2021,9 +2086,11 @@ government_flavor = {
 			government = feudal_government
 			government = bogomilist_government
 			government = imperial_government
+			government = bogomilist_imperial_government
 		}
 		religion_group = christian
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			has_landed_title = e_hre
 			has_landed_title = e_hre_french
@@ -2040,10 +2107,13 @@ government_flavor = {
 
 government_flavor = {
 	name = gov_aztec
-	graphics = GFX_evt_aztec_court
+	graphics = GFX_evt_throne_room_mesoamerican
 	priority = 2
 	trigger = {
 		independent = yes
+		NOT = {
+			has_landed_title = e_mexikha
+		}
 		OR = {
 			religion = aztec
 			religion = aztec_reformed
@@ -2061,6 +2131,7 @@ government_flavor = {
 			government = bogomilist_government
 		}
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = zun_pagan
 			religion = zun_pagan_reformed
@@ -2087,7 +2158,7 @@ government_flavor = {
 	}
 }
 
-government_flavor = { # TODO: Will need to be updated when viceroys are replaced
+government_flavor = {
 	name = gov_duchy_viceroy
 	graphics = GFX_evt_siege
 	priority = 2
@@ -2095,13 +2166,14 @@ government_flavor = { # TODO: Will need to be updated when viceroys are replaced
 		OR = {
 			government = imperial_government
 			government = muslim_imperial_government
+			government = bogomilist_imperial_government
 		}
 		tier = DUKE
 		NOT = { culture_group = byzantine }
 	}
 }
 
-government_flavor = { # TODO: Will need to be updated when viceroys are replaced
+government_flavor = {
 	name = gov_king_viceroy
 	graphics = GFX_evt_spymaster
 	priority = 2
@@ -2109,13 +2181,14 @@ government_flavor = { # TODO: Will need to be updated when viceroys are replaced
 		OR = {
 			government = imperial_government
 			government = muslim_imperial_government
+			government = bogomilist_imperial_government
 		}
 		tier = KING
 		NOT = { culture_group = byzantine }
 	}
 }
 
-government_flavor = { # TODO: Will need to be updated when viceroys are replaced
+government_flavor = {
 	name = gov_duchy_viceroy_byz
 	graphics = GFX_evt_market_byzantine
 	priority = 2
@@ -2123,13 +2196,14 @@ government_flavor = { # TODO: Will need to be updated when viceroys are replaced
 		OR = {
 			government = imperial_government
 			government = muslim_imperial_government
+			government = bogomilist_imperial_government
 		}
 		tier = DUKE
 		culture_group = byzantine
 	}
 }
 
-government_flavor = { # TODO: Will need to be updated when viceroys are replaced
+government_flavor = {
 	name = gov_king_viceroy_byz
 	graphics = GFX_evt_victory_arch_byzantine
 	priority = 2
@@ -2137,6 +2211,7 @@ government_flavor = { # TODO: Will need to be updated when viceroys are replaced
 		OR = {
 			government = imperial_government
 			government = muslim_imperial_government
+			government = bogomilist_imperial_government
 		}
 		tier = KING
 		culture_group = byzantine
@@ -2152,6 +2227,7 @@ government_flavor = {
 			government = feudal_government
 			government = bogomilist_government
 			government = imperial_government
+			government = bogomilist_imperial_government
 		}
 		religion_group = christian
 		tier = DUKE
@@ -2174,6 +2250,7 @@ government_flavor = {
 			government = feudal_government
 			government = bogomilist_government
 			government = imperial_government
+			government = bogomilist_imperial_government
 		}
 		religion_group = christian
 		tier = KING
@@ -2198,6 +2275,7 @@ government_flavor = {
 			government = feudal_government
 			government = bogomilist_government
 			government = imperial_government
+			government = bogomilist_imperial_government
 		}
 		religion_group = christian
 		OR = {
@@ -2215,10 +2293,12 @@ government_flavor = {
 		independent = yes
 		dynasty = 25061 #Karling
 		NOT = { primary_title = { has_law = succ_feudal_elective } }
+		mercenary = no
 		OR = {
 			government = feudal_government
 			government = bogomilist_government
 			government = imperial_government
+			government = bogomilist_imperial_government
 		}
 		religion_group = christian
 		tier = EMPEROR
@@ -2427,6 +2507,7 @@ government_flavor = {
 	trigger = {
 		capital_scope = { region = world_europe_west_brittania }
 		NOT = { has_law = succ_feudal_elective }
+		mercenary = no
 		OR = {
 			religion = norse_pagan
 			religion = norse_pagan_reformed
@@ -2480,6 +2561,16 @@ government_flavor = {
 	trigger = {
 		is_feudal = yes
 		has_character_flag = demon_child_non_pagan
+	}
+}
+
+government_flavor = {
+	name = gov_aztec_empire
+	graphics = GFX_evt_throne_room_mesoamerican
+	priority = 3
+	trigger = {
+		independent = yes
+		has_landed_title = e_mexikha
 	}
 }
 

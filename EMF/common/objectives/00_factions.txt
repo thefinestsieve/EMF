@@ -1518,6 +1518,14 @@ faction_claimant = {
 			holder_scope = { NOT = { is_close_relative = FROM } }
 			new_character = { is_close_relative = FROM }
 		}
+		# discourage forming claimant factions in support of rulers from another independent realm
+		modifier = {
+			factor = 0.15
+			new_character = {
+				is_ruler = yes
+				NOT = { same_realm = FROM }
+			}
+		}
 		# will not install parents of the current holder
 		modifier = {
 			factor = 0
@@ -2649,7 +2657,18 @@ faction_claimant = {
 			FROM = {
 				supported_claimant = { is_close_relative = ROOT }
 			}
-		}		
+		}
+		# discourage forming claimant factions in support of rulers from another independent realm
+		modifier = {
+			factor = 0.15
+			FROM = {
+				supported_claimant = {
+					is_ruler = yes
+					NOT = { same_realm = ROOT }
+				}
+			}
+			NOT = {	has_opinion_modifier = { who = FROM modifier = opinion_coerced_into_joining_faction } }
+		}
 		# will not support decadent claimant unless also decadent
 		modifier = {
 			factor = 0
@@ -5284,7 +5303,7 @@ faction_increase_council_power = {
 			# Or friends/close relatives of councillors
 			FROM = {
 				NOR = {
-					is_voter = yes
+					emf_is_voter_trigger = yes
 					liege = {
 						any_voter = {
 							OR = {
@@ -5412,13 +5431,13 @@ faction_increase_council_power = {
 		
 		modifier = {
 			factor = 0.5
-			FROM = { is_voter = no }
+			FROM = { emf_is_voter_trigger = no }
 		}
 
 		modifier = {
 			factor = 5
 			FROM = {
-				is_voter = yes
+				emf_is_voter_trigger = yes
 				has_position = malcontent
 			}
 		}
@@ -5426,7 +5445,7 @@ faction_increase_council_power = {
 		modifier = {
 			factor = 2
 			FROM = {
-				is_voter = yes
+				emf_is_voter_trigger = yes
 				NOR = {
 					has_position = loyalist
 					has_position = malcontent
@@ -5656,7 +5675,7 @@ faction_increase_council_power = {
 		modifier = {
 			factor = 5
 			FROM = {
-				is_voter = yes
+				emf_is_voter_trigger = yes
 				has_position = malcontent
 			}
 		}
@@ -5664,7 +5683,7 @@ faction_increase_council_power = {
 		modifier = {
 			factor = 2
 			FROM = {
-				is_voter = yes
+				emf_is_voter_trigger = yes
 				NOR = {
 					has_position = loyalist
 					has_position = malcontent

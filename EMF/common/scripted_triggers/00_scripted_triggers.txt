@@ -217,7 +217,6 @@ has_impious_trait_trigger = {
 		trait = hedonist
 		trait = lustful
 		trait = decadent
-		trait = lefthanded
 		trait = kharijite_kafir
 	}
 }
@@ -245,6 +244,7 @@ has_vice_trigger = {
 has_attractive_trait_trigger = {
 	OR = {
 		trait = fair
+		trait = beauty
 		trait = just
 		trait = brave
 		trait = gregarious
@@ -257,7 +257,6 @@ has_attractive_trait_trigger = {
 		trait = melodious_voice
 		trait = powerful_voice
 		trait = calm_voice
-		trait = fertile
 		trait = hurufi_diwan
 	}
 }
@@ -368,10 +367,31 @@ character_disease_trigger = {
 		trait = rabies
 		trait = cancer
 		trait = pneumonic
+	}
+}
+
+has_disease_trigger = {
+	OR = {
+		trait = has_tuberculosis
+		trait = has_typhoid_fever
+		trait = has_typhus
+		trait = has_bubonic_plague
+		trait = has_measles
+		trait = has_small_pox
+		trait = has_aztec_disease
+		trait = syphilitic
+		trait = flu
+		trait = dysentery
+		trait = gout
+		trait = food_poisoning
+		trait = rabies
+		trait = cancer
+		trait = pneumonic
 		trait = dancing_plague
 		trait = scurvy
 		trait = ill
 		trait = leper
+		trait = lovers_pox
 	}
 }
 
@@ -475,6 +495,8 @@ has_fertile_trait_trigger = {
 		trait = lustful
 		trait = dancing_plague
 		trait = fertile
+		trait = fair
+		trait = beauty
 	}
 }
 
@@ -507,6 +529,9 @@ has_infertile_trait_trigger = {
 		trait = dysentery
 		trait = food_poisoning
 		trait = cancer
+		trait = infertile
+		trait = sterile_secret
+		trait = sterile_known
 	}
 }
 
@@ -518,6 +543,8 @@ is_infertile_trigger = {
 		}
 		trait = eunuch
 		trait = celibate
+		trait = sterile_secret
+		trait = sterile_known
 	}
 }
 
@@ -710,22 +737,48 @@ can_be_mercenary_leader_potential_trigger = {
 	prisoner = no
 	is_ruler = no
 	is_adult = yes
+	health = 4
 	
-	NOR = { 
+	NOR = {
+		is_ill = yes
 		trait = incapable
 		is_inaccessible_trigger = yes
+		has_severe_disability_trigger = yes
+		has_medium_disability_trigger = yes
 		trait = monk
+		trait = nun
 		trait = desert_father
+		trait = desert_mother
 		trait = perfecti
 	}
 	same_realm = FROM
 	OR = {
 		is_female = no
+		has_game_rule = { name = gender value = council }
+		has_game_rule = { name = gender value = all }
 		AND = {
 			emf_feminist_religion_trigger = yes
 			FROM = { emf_feminist_religion_trigger = yes }
 		}
-		FROM = { primary_title = { succ_law_title = { has_law = true_cognatic_succession } } }
+		AND = {
+			trait = shieldmaiden
+			religion = FROM
+		}
+		FROM = {
+			primary_title = {
+				OR = {
+					succ_law_title = { has_law = true_cognatic_succession }
+					has_law = status_of_women_4
+				}
+			}
+		}
+		AND = {
+			FROM = { primary_title = { has_law = status_of_women_3 } }
+			OR = {
+				dynasty = FROM
+				is_close_relative = FROM
+			}
+		}
 	}
 }
 #Used with character interaction to replace merc leader. DO NOT REMOVE
@@ -928,6 +981,43 @@ can_be_chancellor_trigger = {
 	liege = { any_demesne_title = { is_titular = no } } # Stop, e.g, adventurers from appointing councillors
 }
 
+female_allowed_to_lead_army = {
+	OR = {
+		AND = {
+			emf_feminist_religion_trigger = yes
+			liege = { religion = ROOT }
+		}
+		AND = {
+			trait = shieldmaiden
+			liege = { religion = ROOT }
+		}
+		liege = {
+			primary_title = {
+				OR = {
+					succ_law_title = { has_law = true_cognatic_succession }
+					has_law = status_of_women_4
+				}
+			}
+		}
+		AND = {
+			liege = { primary_title = { has_law = status_of_women_3 } }
+			OR = {
+				liege = {
+					OR = {
+						dynasty = ROOT
+						is_close_relative = ROOT
+						is_married = ROOT
+						any_consort = { character = ROOT }
+					}
+				}
+				is_landed = yes
+			}
+		}
+		has_game_rule = { name = gender value = council }
+		has_game_rule = { name = gender value = all }
+	}
+}
+
 can_be_marshal_trigger = {
 	is_adult = yes
 	prisoner = no
@@ -944,43 +1034,16 @@ can_be_marshal_trigger = {
 	OR = {
 		is_female = no
 		trait = horse
-		AND = {
-			emf_feminist_religion_trigger = yes
-			liege = { religion = ROOT }
-		}
-		AND = {
-			trait = shieldmaiden
-			liege = { religion = ROOT }
-		}
-		liege = {
-			primary_title = {
-				succ_law_title = { has_law = true_cognatic_succession }
-			}
-		}
-		AND = {
-			liege = { primary_title = { has_law = status_of_women_3 } }
-			OR = {
-				liege = {
-					OR = {
-						dynasty = ROOT
-						is_close_relative = ROOT
-						any_spouse = { character = ROOT }
-						any_consort = { character = ROOT }
-					}
-				}
-				is_landed = yes
-			}
-		}
-		liege = { primary_title = { has_law = status_of_women_4 } }
-		OR = {
-			has_game_rule = { name = gender value = council }
-			has_game_rule = { name = gender value = all }
-		}
+		female_allowed_to_lead_army = yes
 		has_character_flag = special_marshal
 	}
 	OR = {
 		NOT = { religion = hindu }
 		trait = kshatriya
+	}
+	OR = {
+		NOT = { religion = cathar }
+		NOT = { trait = perfecti }
 	}
 	OR = {
 		NOT = { religion = bogomilist }
@@ -1146,6 +1209,10 @@ can_be_spymaster_trigger = {
 			}
 		}
 		has_character_flag = special_spymaster
+	}
+	OR = {
+		NOT = { religion = cathar }
+		NOT = { trait = perfecti }
 	}
 	OR = {
 		NOT = { religion = bogomilist }
@@ -1387,23 +1454,16 @@ can_be_maimed_trigger = {
 	}
 }
 
-physician_bad_trigger = { #todo mental, blinded
+physician_bad_trigger = { 
 	OR = {
-		trait = lunatic
-		trait = stressed
-		trait = depressed
-		trait = possessed
-		trait = drunkard
-		trait = blinded
+		has_severe_disability_trigger = yes
+		has_mental_disorder_trigger = yes
 	}
 }
 
-physician_good_trigger = { #todo is learned
+physician_good_trigger = {
 	OR = {
-		trait = scholar 
-		trait = mutazilite
-		trait = erudite 
-		trait = physician
+		is_learned_trigger = yes
 		religion_group = jewish_group
 	} 
 }
@@ -1414,6 +1474,8 @@ is_inaccessible_trigger = {
 		hidden_tooltip = {
 			OR = {
 				trait = in_hiding
+				trait = on_hajj
+				trait = on_pilgrimage
 				has_character_modifier = in_seclusion
 			}
 		}
@@ -1443,6 +1505,68 @@ root_attraction_trigger = {
 		AND = {
 			is_female = no
 			ROOT = { prefers_men_trigger = yes }
+		}
+	}
+}
+
+from_attraction_trigger = {
+	#Returns yes when from is attracted the scoped character, based on sex
+	OR = {
+		AND = {
+			is_female = yes
+			FROM = { prefers_men_trigger = no }
+		}
+		AND = {
+			is_female = no
+			FROM = { prefers_men_trigger = yes }
+		}
+	}
+}
+
+root_mutual_attraction_trigger = {
+	#Returns yes when root is attracted to the scoped character, based on sex, and the scoped character to root
+	OR = {
+		AND = {
+			is_female = yes
+			ROOT = { prefers_men_trigger = no }
+		}
+		AND = {
+			is_female = no
+			ROOT = { prefers_men_trigger = yes }
+		}
+	}
+	OR = {
+		AND = {
+			ROOT = { is_female = yes }
+			prefers_men_trigger = no
+		}
+		AND = {
+			ROOT = { is_female = no }
+			prefers_men_trigger = yes
+		}
+	}
+}
+
+from_mutual_attraction_trigger = {
+	#Returns yes when from is attracted to the scoped character, based on sex, and the scoped character to from
+	OR = {
+		AND = {
+			is_female = yes
+			FROM = { prefers_men_trigger = no }
+		}
+		AND = {
+			is_female = no
+			FROM = { prefers_men_trigger = yes }
+		}
+	}
+	OR = {
+		AND = {
+			FROM = { is_female = yes }
+			prefers_men_trigger = no
+		}
+		AND = {
+			FROM = { is_female = no }
+			prefers_men_trigger = yes
 		}
 	}
 }
@@ -1609,7 +1733,8 @@ death_sacrificed_trigger = {
 		death_reason = death_sacrificed
 		death_reason = death_sacrificed_norse
 		death_reason = death_sacrificed_ancestors
-	}	
+		death_reason = death_execution_aztec_sacrifice
+	}
 }
 
 death_accident_trigger = {
@@ -1640,8 +1765,155 @@ block_general_event_trigger = {
 		is_adult = no
 		prisoner = yes
 		is_inaccessible_trigger = yes
+		has_landed_title = e_hip
 		is_alive = no
 		NOT = { always = yes }
+	}
+}
+
+gender_equality_trigger = {
+	OR = {
+		emf_feminist_religion_trigger = yes
+		AND = {
+			is_landed = yes
+			primary_title = { has_law = status_of_women_4 }
+		}
+		AND = {
+			is_landed = no
+			liege = { primary_title = { has_law = status_of_women_4 } }
+		}
+		has_game_rule = {
+			name = gender
+			value = all
+		}
+	}
+}
+
+has_crusade_trait_trigger = {
+	OR = {
+		AND = {
+			OR = {
+				religion = norse_pagan
+				religion = norse_pagan_reformed
+			}
+			trait = valhalla_bound
+		}
+		AND = {
+			OR = {
+				religion = tengri_pagan
+				religion = tengri_pagan_reformed
+			}
+			trait = tengri_warrior
+		}
+		AND = {
+			OR = {
+				religion = baltic_pagan
+				religion = baltic_pagan_reformed
+			}
+			trait = romuvas_own
+		}
+		AND = {
+			OR = {
+				religion = finnish_pagan
+				religion = finnish_pagan_reformed
+			}
+			trait = ukkos_shield
+		}
+		AND = {
+			OR = {
+				religion = aztec
+				religion = aztec_reformed
+			}
+			trait = eagle_warrior
+		}
+		AND = {
+			OR = {
+				religion = slavic_pagan
+				religion = slavic_pagan_reformed
+			}
+			trait = peruns_chosen
+		}
+		AND = {
+			OR = {
+				religion = west_african_pagan
+				religion = west_african_pagan_reformed
+			}
+			trait = nyames_shield
+		}
+		AND = {
+			OR = {
+				religion = zun_pagan
+				religion = zun_pagan_reformed
+			}
+			trait = sun_warrior
+		}
+		AND = {
+			religion = hellenic_pagan
+			trait = ares_own
+		}
+		AND = {
+			religion_group = muslim
+			trait = mujahid
+		}
+		AND = {
+			religion_group = christian
+			trait = crusader
+		}
+		AND = {
+			religion_group = zoroastrian_group
+			trait = gondi_shahansha
+		}
+		AND = {
+			religion_group = jewish_group
+			trait = shaddai
+		}
+	}
+}
+
+has_minor_deity_trigger = {
+	OR = {
+		has_character_modifier = follower_of_perun
+		has_character_modifier = follower_of_veles
+		has_character_modifier = follower_of_jarilo
+		has_character_modifier = follower_of_morana
+		has_character_modifier = follower_of_yemoja
+		has_character_modifier = follower_of_ekwensu
+		has_character_modifier = follower_of_orunmila
+		has_character_modifier = follower_of_shango
+		has_character_modifier = follower_of_ukko
+		has_character_modifier = follower_of_akka
+		has_character_modifier = follower_of_taipo_and_mielikki 
+		has_character_modifier = follower_of_lempo
+		has_character_modifier = follower_of_dievas
+		has_character_modifier = follower_of_velnias
+		has_character_modifier = follower_of_perkunas
+		has_character_modifier = follower_of_zemyna
+	}
+}
+
+#Has same education as prev?
+has_prev_education_trigger = {
+	OR = {
+		AND = {
+			has_education_martial_trigger = yes
+			PREV = { has_education_martial_trigger = yes }
+		}
+		AND = {
+			has_education_diplomacy_trigger = yes
+			PREV = { has_education_diplomacy_trigger = yes }
+		}
+		AND = {
+			has_education_stewardship_trigger = yes
+			PREV = { has_education_stewardship_trigger = yes }
+		}
+		AND = {
+			has_education_intrigue_trigger = yes
+			PREV = { has_education_intrigue_trigger = yes }
+		}
+		AND = {
+			has_education_learning_trigger = yes
+			PREV = { has_education_learning_trigger = yes }
+		}
 	}
 }
 

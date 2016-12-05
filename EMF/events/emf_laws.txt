@@ -54,20 +54,18 @@ character_event = {
 		set_character_flag = emf_no_law_penalties
 		
 		any_demesne_title = {
-			limit = { higher_tier_than = DUKE }
+			limit = {
+				higher_tier_than = DUKE
+				temporary = no
+			}
 			
 			if = {
 				limit = { has_law = crown_authority_0 }
-				
 				if = {
 					limit = { NOT = { has_dlc = "Zeus" } }
 					if = {
 						limit = { NOT = { has_law = revokation_0 } }
 						add_law = revokation_0
-					}
-					if = {
-						limit = { NOT = { has_law = king_peace_0 } }
-						add_law = king_peace_0
 					}
 				}
 				if = {
@@ -81,6 +79,10 @@ character_event = {
 					limit = { NOT = { has_law = inheritance_0 } }
 					add_law = inheritance_0
 				}
+				if = {
+					limit = { NOT = { has_law = king_peace_0 } }
+					add_law = king_peace_0
+				}
 			} # END: Autonomous Vassals
 			
 			if = {
@@ -91,10 +93,6 @@ character_event = {
 					if = {
 						limit = { NOT = { has_law = revokation_1 } }
 						add_law = revokation_1
-					}
-					if = {
-						limit = { NOT = { has_law = king_peace_0 } }
-						add_law = king_peace_0
 					}
 				}
 				if = {
@@ -108,6 +106,10 @@ character_event = {
 					limit = { NOT = { has_law = inheritance_0 } }
 					add_law = inheritance_0
 				}
+				if = {
+					limit = { NOT = { has_law = king_peace_0 } }
+					add_law = king_peace_0
+				}
 			} # END: Low CA
 			
 			if = {
@@ -118,10 +120,6 @@ character_event = {
 					if = {
 						limit = { NOT = { has_law = revokation_2 } }
 						add_law = revokation_2
-					}
-					if = {
-						limit = { NOT = { has_law = king_peace_1 } }
-						add_law = king_peace_1
 					}
 				}
 				if = {
@@ -135,6 +133,10 @@ character_event = {
 					limit = { NOT = { has_law = inheritance_0 } }
 					add_law = inheritance_0
 				}
+				if = {
+					limit = { NOT = { has_law = king_peace_0 } }
+					add_law = king_peace_0
+				}
 			} # END: Medium CA
 			
 			if = {
@@ -146,10 +148,6 @@ character_event = {
 						limit = { NOT = { has_law = revokation_2 } }
 						add_law = revokation_2
 					}
-					if = {
-						limit = { NOT = { has_law = king_peace_1 } }
-						add_law = king_peace_1
-					}
 				}
 				if = {
 					limit = {
@@ -161,6 +159,10 @@ character_event = {
 				if = {
 					limit = { NOT = { has_law = inheritance_1 } }
 					add_law = inheritance_1
+				}
+				if = {
+					limit = { NOT = { has_law = king_peace_0 } }
+					add_law = king_peace_0
 				}
 			} # END: High CA
 			
@@ -172,10 +174,6 @@ character_event = {
 						limit = { NOT = { has_law = revokation_2 } }
 						add_law = revokation_2
 					}
-					if = {
-						limit = { NOT = { has_law = king_peace_2 } }
-						add_law = king_peace_2
-					}
 				}
 				if = {
 					limit = {
@@ -187,6 +185,15 @@ character_event = {
 				if = {
 					limit = { NOT = { has_law = inheritance_1 } }
 					add_law = inheritance_1
+				}
+				if = {
+					limit = {
+						NOR = {
+							has_law = king_peace_1
+							has_law = king_peace_2
+						}
+					}
+					add_law = king_peace_1
 				}
 			} # END: Max CA
 		}
@@ -263,7 +270,7 @@ character_event = {
 			}
 			set_character_flag = emf_inv_cooldown_@FROM
 		}
-		# NOTE: Imperial Kingdom Creation law does not need to copy cooldowns upon creation
+		# NOTE: Imperial Kingdom Creation law does not need to copy cooldowns upon title creation
 	}
 }
 

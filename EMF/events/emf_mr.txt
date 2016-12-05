@@ -325,6 +325,9 @@ character_event = {
 					female = no
 					age = 16
 				}
+				new_character = {
+					emf_new_character_effect = yes
+				}
 			}
 			10 = {
 				modifier = {
@@ -336,6 +339,9 @@ character_event = {
 					dynasty = ROOT
 					female = no
 					age = 17
+				}
+				new_character = {
+					emf_new_character_effect = yes
 				}
 			}
 			10 = {
@@ -349,6 +355,9 @@ character_event = {
 					female = no
 					age = 18
 				}
+				new_character = {
+					emf_new_character_effect = yes
+				}
 			}
 			10 = {
 				modifier = {
@@ -360,6 +369,9 @@ character_event = {
 					dynasty = ROOT
 					female = no
 					age = 19
+				}
+				new_character = {
+					emf_new_character_effect = yes
 				}
 			}
 			10 = {
@@ -373,6 +385,9 @@ character_event = {
 					female = no
 					age = 20
 				}
+				new_character = {
+					emf_new_character_effect = yes
+				}
 			}
 			10 = {
 				modifier = {
@@ -384,6 +399,9 @@ character_event = {
 					dynasty = ROOT
 					female = no
 					age = 21
+				}
+				new_character = {
+					emf_new_character_effect = yes
 				}
 			}
 		}
@@ -680,6 +698,9 @@ character_event = {
 					age = 16
 					female = no
 				}
+				new_character = {
+					emf_new_character_effect = yes
+				}
 			}
 			10 = {
 				modifier = {
@@ -691,6 +712,9 @@ character_event = {
 					dynasty = ROOT
 					age = 18
 					female = no
+				}
+				new_character = {
+					emf_new_character_effect = yes
 				}
 			}
 			10 = {
@@ -704,6 +728,9 @@ character_event = {
 					age = 20
 					female = no
 				}
+				new_character = {
+					emf_new_character_effect = yes
+				}
 			}
 			10 = {
 				modifier = {
@@ -716,6 +743,9 @@ character_event = {
 					age = 22
 					female = no
 				}
+				new_character = {
+					emf_new_character_effect = yes
+				}
 			}
 			10 = {
 				modifier = {
@@ -727,6 +757,9 @@ character_event = {
 					dynasty = ROOT
 					age = 24
 					female = no
+				}
+				new_character = {
+					emf_new_character_effect = yes
 				}
 			}
 		}
@@ -1273,71 +1306,5 @@ character_event = {
 			emf_liege_change_effect = yes
 			break = yes
 		}
-	}
-}
-
-
-# emf_mr.100
-#
-# Event for deciding the rules/restrictions for Merchant Republics.
-# Called by emf_customize_mr_rules customization decision.
-character_event = {
-	id = emf_mr.100
-	desc = emf_mr.100.desc
-	picture = GFX_evt_doge_republic
-	border = GFX_event_normal_frame_diplomacy
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = emf_mr.100.opt.a # Unlock laws and CBs
-		trigger = {
-			NOR = {
-				has_global_flag = emf_mr_laws_unlocked
-				has_global_flag = emf_mr_cbs_unlocked
-			}
-		}
-		set_global_flag = emf_mr_laws_unlocked
-		set_global_flag = emf_mr_cbs_unlocked
-	}
-	option = {
-		name = emf_mr.100.opt.b # Restrict laws and CBs
-		trigger = {
-			has_global_flag = emf_mr_laws_unlocked
-			has_global_flag = emf_mr_cbs_unlocked
-		}
-		clr_global_flag = emf_mr_laws_unlocked
-		clr_global_flag = emf_mr_cbs_unlocked
-	}
-	option = {
-		name = emf_mr.100.opt.c # Unlock laws
-		trigger = {
-			NOT = { has_global_flag = emf_mr_laws_unlocked }
-		}
-		set_global_flag = emf_mr_laws_unlocked
-	}
-	option = {
-		name = emf_mr.100.opt.d # Restrict laws
-		trigger = {
-			has_global_flag = emf_mr_laws_unlocked
-		}
-		clr_global_flag = emf_mr_laws_unlocked
-	}
-	option = {
-		name = emf_mr.100.opt.e # Unlock CBs
-		trigger = {
-			NOT = { has_global_flag = emf_mr_cbs_unlocked }
-		}
-		set_global_flag = emf_mr_cbs_unlocked
-	}
-	option = {
-		name = emf_mr.100.opt.f # Restrict CBs
-		trigger = {
-			has_global_flag = emf_mr_cbs_unlocked
-		}
-		clr_global_flag = emf_mr_cbs_unlocked
-	}
-	option = {
-		name = CANCEL
 	}
 }

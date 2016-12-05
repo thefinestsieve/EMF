@@ -33,7 +33,6 @@ narrative_event = {
 	only_men = yes
 	has_dlc = "Charlemagne"
 	has_global_flag = zun_reformation
-	only_rulers = yes
 	
 	trigger = {
 		NOT = { is_title_active = d_zun_warriors }
@@ -66,78 +65,7 @@ narrative_event = {
 				grant_title = PREV
 			}
 			set_government_type = feudal_government
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = zun_pagan_reformed
-				culture = afghan
-				female = no
-				age = 16
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = zun_pagan_reformed
-				culture = afghan
-				female = no
-				age = 18
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = zun_pagan_reformed
-				culture = afghan
-				female = no
-				age = 18
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = zun_pagan_reformed
-				culture = afghan
-				female = no
-				age = 20
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = zun_pagan_reformed
-				culture = afghan
-				female = no
-				age = 25
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = zun_pagan_reformed
-				culture = afghan
-				female = no
-				age = 26
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = zun_pagan_reformed
-				culture = afghan
-				female = no
-				age = 28
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = zun_pagan_reformed
-				culture = afghan
-				female = yes
-				age = 16
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = zun_pagan_reformed
-				culture = afghan
-				female = yes
-				age = 17
-			}
+			emf_new_character_effect = yes
 		}
 	}
 	
@@ -1381,78 +1309,7 @@ narrative_event = {
 				grant_title = PREV
 			}
 			set_government_type = feudal_government
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = ROOT
-				culture = persian
-				female = no
-				age = 16
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = ROOT
-				culture = persian
-				female = no
-				age = 18
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = ROOT
-				culture = persian
-				female = no
-				age = 18
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = ROOT
-				culture = persian
-				female = no
-				age = 20
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = ROOT
-				culture = persian
-				female = no
-				age = 25
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = ROOT
-				culture = persian
-				female = no
-				age = 26
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = ROOT
-				culture = persian
-				female = no
-				age = 28
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = ROOT
-				culture = persian
-				female = yes
-				age = 16
-			}
-			create_character = {
-				random_traits = yes
-				dynasty = random
-				religion = ROOT
-				culture = persian
-				female = yes
-				age = 17
-			}
+			emf_new_character_effect = yes
 		}
 	}
 	

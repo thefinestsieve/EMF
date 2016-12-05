@@ -2032,40 +2032,38 @@ narrative_event = {
 # Seljuk appears and begins his first adventure
 character_event = {
 	id = 60200
-	desc = EVTDESC60200
-	picture = GFX_evt_mongols
-	border = GFX_event_normal_frame_war
+
+	hide_window = yes
 	
 	only_playable = yes
-	culture = turkish
+	religion = catholic
 
 	trigger = {
-		year = 960
-		NOT = { year = 980 }
-		NOT = { has_game_rule = { name = adventurers value = none } }
-		
-		culture = turkish
+		controls_religion = yes
+
+		NOR = {
+			has_game_rule = { name = turkic_invasions value = off }
+			has_game_rule = { name = adventurers value = none }
+		}
 		OR = {
-			is_nomadic = yes
 			AND = {
-				is_tribal = yes
-				NOT = { has_dlc = "Horse Lords" }
+				has_game_rule = { name = turkic_invasions value = historical }
+				year = 960
+				NOT = { year = 980 }
 			}
-		}
-		OR = {
-			independent = yes
-			NOT = { any_liege = { culture = ROOT } }
-		}
+			AND = {
+				has_game_rule = { name = turkic_invasions value = random }
+				year = 809
+				NOT = { year = 1200 }
+			}
+		}	
+		
 		any_independent_ruler = {
 			war = no
 			in_revolt = no
 			is_nomadic = no
 			is_tribal = no
-			NOR = {
-				is_tributary = yes
-				same_realm = ROOT
-				any_allied_character = { higher_tier_than = DUKE }
-			}
+			is_tributary = no
 			OR = {
 				c_merv = { owner_under_PREV = yes }
 				c_dihistan = { owner_under_PREV = yes }
@@ -2096,11 +2094,7 @@ character_event = {
 				in_revolt = no
 				is_nomadic = no
 				is_tribal = no
-				NOR = {
-					is_tributary = yes
-					same_realm = ROOT
-					any_allied_character = { higher_tier_than = DUKE }
-				}
+				is_tributary = no
 				c_tus = { owner_under_PREV = yes }
 			}
 			save_event_target_as = seljuk_target_ruler
@@ -2112,11 +2106,7 @@ character_event = {
 				in_revolt = no
 				is_nomadic = no
 				is_tribal = no
-				NOR = {
-					is_tributary = yes
-					same_realm = ROOT
-					any_allied_character = { higher_tier_than = DUKE }
-				}
+				is_tributary = no
 				c_merv = { owner_under_PREV = yes }
 				NOT = { event_target:seljuk_target_ruler = { always = yes } }
 			}
@@ -2129,16 +2119,26 @@ character_event = {
 				in_revolt = no
 				is_nomadic = no
 				is_tribal = no
-				NOR = {
-					is_tributary = yes
-					same_realm = ROOT
-					any_allied_character = { higher_tier_than = DUKE }
-				}
+				is_tributary = no
 				c_dihistan = { owner_under_PREV = yes }
 				NOT = { event_target:seljuk_target_ruler = { always = yes } }
 			}
 			save_event_target_as = seljuk_target_ruler
 			c_dihistan = { location = { save_event_target_as = seljuk_target_province } }
+		}
+
+		# Select origin
+		random_province = {
+			limit = { culture = turkish }
+			save_event_target_as = seljuk_origin
+		}
+		if = {
+			limit = {
+				NOT = { event_target:seljuk_origin = { always = yes } }
+			}
+			c_usturt = {
+				location = { save_event_target_as = seljuk_origin }
+			}
 		}
 		
 		# Now create Seljuk
@@ -2167,137 +2167,148 @@ character_event = {
 			trait = adventurer
 		}
 		new_character = {
+			emf_new_character_effect = yes
 			set_character_flag = seljuk_himself
 			save_event_target_as = seljuk
 			log = "60200: INFO: Seljuk ([This.GetID]) spawned in the court of [Root.GetBestName] ([Root.PrimaryTitle.GetID])"
 			wealth = 500
 			prestige = 500
 			if = {
-				limit = { ROOT = { is_nomadic = yes } }
+				limit = { has_dlc = "Horse Lords" }
 				set_character_flag = will_be_nomadic
 			}
 			# Give adventurer title and start war
-			ROOT = {
-				capital_scope = {
-					event_target:seljuk = {
-						set_defacto_liege = THIS
-						create_title = {
-							tier = DUKE
-							landless = yes
-							temporary = yes
-							culture = THIS
-							name = "CLAIMANT_ADVENTURE"
-							holder = THIS
+			event_target:seljuk_origin = {
+				event_target:seljuk = {
+					set_defacto_liege = THIS
+					create_title = {
+						tier = DUKE
+						landless = yes
+						temporary = yes
+						culture = THIS
+						name = "CLAIMANT_ADVENTURE"
+						holder = THIS
+					}
+					if = {
+						limit = { NOT = { has_character_flag = will_be_nomadic } }
+						set_government_type = tribal_government
+					}
+					if = {
+						limit = { has_character_flag = will_be_nomadic }
+						clr_character_flag = will_be_nomadic
+						set_government_type = nomadic_government
+						population = 5000
+					}
+					set_character_flag = duchy_adventurer
+					spawn_unit = {
+						province = PREV
+						home = PREV
+						owner = THIS
+						troops = {
+							horse_archers = { 2700 2700 }
+							light_cavalry = { 1600 1600 }
+							light_infantry = { 541 541 }
+							heavy_infantry = { 210 210 }
+							knights = { 47 47 }
 						}
-						if = {
-							limit = { NOT = { has_character_flag = will_be_nomadic } }
-							set_government_type = tribal_government
-						}
-						if = {
-							limit = { has_character_flag = will_be_nomadic }
-							clr_character_flag = will_be_nomadic
-							set_government_type = nomadic_government
-							population = 5000
-						}
-						set_character_flag = duchy_adventurer
-						spawn_unit = {
-							province = PREV
-							home = PREV
-							owner = THIS
-							troops = {
-								horse_archers = { 2700 2700 }
-								light_cavalry = { 1600 1600 }
-								light_infantry = { 541 541 }
-								heavy_infantry = { 210 210 }
-								knights = { 47 47 }
-							}
-							attrition = 0.25
-							cannot_inherit = yes
-							maintenance_multiplier = 0
-							earmark = seljuk_event_troops
-						}
-						spawn_unit = {
-							province = PREV
-							home = PREV
-							owner = THIS
-							match_character = event_target:seljuk_target_ruler
-							match_mult = 0.33
-							match_min = 500
-							match_max = 10000
-							attrition = 0.25
-							disband_on_peace = yes
-							earmark = seljuk_duchy_adventure
-						}
-						spawn_unit = {
-							province = PREV
-							home = PREV
-							owner = THIS
-							match_character = event_target:seljuk_target_ruler
-							match_mult = 0.33
-							match_min = 500
-							match_max = 10000
-							attrition = 0.25
-							disband_on_peace = yes
-							earmark = seljuk_duchy_adventure
-						}
-						spawn_unit = {
-							province = PREV
-							home = PREV
-							owner = THIS
-							match_character = event_target:seljuk_target_ruler
-							match_mult = 0.33
-							match_min = 500
-							match_max = 10000
-							attrition = 0.25
-							disband_on_peace = yes
-							earmark = seljuk_duchy_adventure
-						}
-						spawn_unit = {
-							province = PREV
-							home = PREV
-							owner = THIS
-							match_character = event_target:seljuk_target_ruler
-							match_mult = 0.33
-							match_min = 500
-							match_max = 10000
-							attrition = 0.25
-							disband_on_peace = yes
-							earmark = seljuk_duchy_adventure
-						}
-						spawn_unit = {
-							province = PREV
-							home = PREV
-							owner = THIS
-							match_character = event_target:seljuk_target_ruler
-							match_mult = 0.33
-							match_min = 500
-							match_max = 10000
-							attrition = 0.25
-							disband_on_peace = yes
-							earmark = seljuk_duchy_adventure
-						}
-						spawn_unit = {
-							province = PREV
-							home = PREV
-							owner = THIS
-							match_character = event_target:seljuk_target_ruler
-							match_mult = 0.33
-							match_min = 500
-							match_max = 10000
-							attrition = 0.25
-							disband_on_peace = yes
-							earmark = seljuk_duchy_adventure
-						}
-						event_target:seljuk_target_ruler = {
-							event_target:seljuk_target_province = {
-								event_target:seljuk = {		
-									war = {
-										target = PREVPREV
-										casus_belli = duchy_adventure
-										thirdparty_title = PREV
-										tier = DUKE
-										infamy = 0
-									}
+						attrition = 0.25
+						cannot_inherit = yes
+						maintenance_multiplier = 0
+						earmark = seljuk_event_troops
+					}
+					spawn_unit = {
+						province = PREV
+						home = PREV
+						owner = THIS
+						match_character = event_target:seljuk_target_ruler
+						match_mult = 0.33
+						match_min = 500
+						match_max = 10000
+						attrition = 0.25
+						disband_on_peace = yes
+						earmark = seljuk_duchy_adventure
+					}
+					spawn_unit = {
+						province = PREV
+						home = PREV
+						owner = THIS
+						match_character = event_target:seljuk_target_ruler
+						match_mult = 0.4
+						match_min = 500
+						match_max = 10000
+						attrition = 0.25
+						disband_on_peace = yes
+						earmark = seljuk_duchy_adventure
+					}
+					spawn_unit = {
+						province = PREV
+						home = PREV
+						owner = THIS
+						match_character = event_target:seljuk_target_ruler
+						match_mult = 0.4
+						match_min = 500
+						match_max = 10000
+						attrition = 0.25
+						disband_on_peace = yes
+						earmark = seljuk_duchy_adventure
+					}
+					spawn_unit = {
+						province = PREV
+						home = PREV
+						owner = THIS
+						match_character = event_target:seljuk_target_ruler
+						match_mult = 0.4
+						match_min = 500
+						match_max = 10000
+						attrition = 0.25
+						disband_on_peace = yes
+						earmark = seljuk_duchy_adventure
+					}
+					spawn_unit = {
+						province = PREV
+						home = PREV
+						owner = THIS
+						match_character = event_target:seljuk_target_ruler
+						match_mult = 0.4
+						match_min = 500
+						match_max = 10000
+						attrition = 0.25
+						disband_on_peace = yes
+						earmark = seljuk_duchy_adventure
+					}
+					spawn_unit = {
+						province = PREV
+						home = PREV
+						owner = THIS
+						match_character = event_target:seljuk_target_ruler
+						match_mult = 0.4
+						match_min = 500
+						match_max = 10000
+						attrition = 0.25
+						disband_on_peace = yes
+						earmark = seljuk_duchy_adventure
+					}
+					spawn_unit = {
+						province = PREV
+						home = PREV
+						owner = THIS
+						match_character = event_target:seljuk_target_ruler
+						match_mult = 0.4
+						match_min = 500
+						match_max = 10000
+						attrition = 0.25
+						disband_on_peace = yes
+						earmark = seljuk_duchy_adventure
+					}
+					event_target:seljuk_target_ruler = {
+						event_target:seljuk_target_province = {
+							event_target:seljuk = {		
+								war = {
+									target = PREVPREV
+									casus_belli = duchy_adventure
+									thirdparty_title = PREV
+									tier = DUKE
+									infamy = 0
 								}
 							}
 						}
@@ -2306,10 +2317,6 @@ character_event = {
 			}
 			character_event = { id = 60201 }
 		}
-	}
-
-	option = {
-		name = EVTOPTA60205
 	}
 }
 
@@ -2360,94 +2367,7 @@ character_event = {
 		}
 		
 		# Create some extra courtiers
-		create_random_diplomat = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 30
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_random_priest = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 35
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_random_soldier = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 30
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_random_soldier = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 25
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_random_soldier = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 22
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_character = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = yes
-			age = 16
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_character = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = yes
-			age = 17
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_character = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = yes
-			age = 18
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
+		emf_create_courtiers_for_ROOT = yes
 	}
 }
 
@@ -3043,8 +2963,30 @@ character_event = {
 	culture = mongol
 
 	trigger = {
-		year = 1350
-		NOT = { year = 1370 }
+		NOT = {
+			has_game_rule = {
+				name = turkic_invasions
+				value = off
+			}
+		}
+		OR = {
+			AND = {
+				has_game_rule = {
+					name = turkic_invasions
+					value = historical
+				}
+				has_global_flag = mongol_empire_arrival
+				year = 1350
+				NOT = { year = 1370 }
+			}
+			AND = {
+				has_game_rule = {
+					name = turkic_invasions
+					value = random
+				}
+				year = 1200
+			}
+		}
 		NOT = { has_game_rule = { name = adventurers value = none } }
 		
 		OR = {
@@ -3066,7 +3008,6 @@ character_event = {
 			NOR = {
 				is_tributary = yes
 				same_realm = ROOT
-				any_allied_character = { higher_tier_than = DUKE }
 			}
 			OR = {
 				c_samarkand = { owner_under_PREV = yes }
@@ -3103,7 +3044,6 @@ character_event = {
 				NOR = {
 					is_tributary = yes
 					same_realm = ROOT
-					any_allied_character = { higher_tier_than = DUKE }
 				}
 				c_merv = { owner_under_PREV = yes }
 			}
@@ -3119,7 +3059,6 @@ character_event = {
 				NOR = {
 					is_tributary = yes
 					same_realm = ROOT
-					any_allied_character = { higher_tier_than = DUKE }
 				}
 				c_tus = { owner_under_PREV = yes }
 				NOT = { event_target:timur_target_ruler = { always = yes } }
@@ -3136,7 +3075,6 @@ character_event = {
 				NOR = {
 					is_tributary = yes
 					same_realm = ROOT
-					any_allied_character = { higher_tier_than = DUKE }
 				}
 				OR = {
 					c_samarkand = { owner_under_PREV = yes }
@@ -3185,6 +3123,7 @@ character_event = {
 			trait = adventurer
 		}
 		new_character = {
+			emf_new_character_effect = yes
 			set_character_flag = timur_himself
 			save_event_target_as = timur
 			log = "60300: INFO: Timur ([This.GetID]) spawned in the court of [Root.GetBestName] ([Root.PrimaryTitle.GetID])"
@@ -3290,6 +3229,18 @@ character_event = {
 							disband_on_peace = yes
 							earmark = timur_duchy_adventure
 						}
+						spawn_unit = {
+							province = PREV
+							home = PREV
+							owner = THIS
+							match_character = event_target:timur_target_ruler
+							match_mult = 0.33
+							match_min = 500
+							match_max = 10000
+							attrition = 0.25
+							disband_on_peace = yes
+							earmark = timur_duchy_adventure
+						}
 						event_target:timur_target_ruler = {
 							event_target:timur_target_province = {
 								event_target:timur = {		
@@ -3324,94 +3275,7 @@ character_event = {
 	
 	immediate = {
 		# Create some extra courtiers
-		create_random_diplomat = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 30
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_random_priest = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 35
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_random_soldier = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 30
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_random_soldier = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 25
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_random_soldier = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 22
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_character = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = yes
-			age = 16
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_character = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = yes
-			age = 17
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_character = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = yes
-			age = 18
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
+		emf_create_courtiers_for_ROOT = yes
 	}
 }
 
@@ -3930,8 +3794,30 @@ character_event = {
 	religion_group = muslim
 
 	trigger = {
-		year = 965
-		NOT = { year = 1010 }
+		NOT = {
+			has_game_rule = {
+				name = turkic_invasions
+				value = off
+			}
+		}
+		OR = {
+			AND = {
+				has_game_rule = {
+					name = turkic_invasions
+					value = historical
+				}
+				year = 965
+				NOT = { year = 1010 }
+			}
+			AND = {
+				has_game_rule = {
+					name = turkic_invasions
+					value = random
+				}
+				year = 809
+				NOT = { year = 1200 }
+			}
+		}
 		NOT = { has_game_rule = { name = adventurers value = none } }
 		c_bukhara = { owner_under_ROOT = yes }
 		
@@ -3940,10 +3826,7 @@ character_event = {
 			in_revolt = no
 			is_nomadic = no
 			is_tribal = no
-			NOR = {
-				is_tributary = yes
-				any_allied_character = { higher_tier_than = DUKE }
-			}
+			is_tributary = no
 			c_ghazna = { owner_under_PREV = yes }
 		}
 		NOT = { has_global_flag = sabuktigin_spawned }
@@ -3972,10 +3855,7 @@ character_event = {
 				in_revolt = no
 				is_nomadic = no
 				is_tribal = no
-				NOR = {
-					is_tributary = yes
-					any_allied_character = { higher_tier_than = DUKE }
-				}
+				is_tributary = no
 				c_ghazna = { owner_under_PREV = yes }
 			}
 			save_event_target_as = sabuktigin_target_ruler
@@ -4007,6 +3887,7 @@ character_event = {
 			trait = adventurer
 		}
 		new_character = {
+			emf_new_character_effect = yes
 			set_character_flag = sabuktigin_himself
 			save_event_target_as = sabuktigin
 			log = "60400: INFO: Sabuktigin ([This.GetID]) spawned in the court of [Root.GetBestName] ([Root.PrimaryTitle.GetID])"
@@ -4112,6 +3993,18 @@ character_event = {
 							disband_on_peace = yes
 							earmark = sabuktigin_duchy_adventure
 						}
+						spawn_unit = {
+							province = PREV
+							home = PREV
+							owner = THIS
+							match_character = event_target:sabuktigin_target_ruler
+							match_mult = 0.33
+							match_min = 500
+							match_max = 10000
+							attrition = 0.25
+							disband_on_peace = yes
+							earmark = sabuktigin_duchy_adventure
+						}
 						event_target:sabuktigin_target_ruler = {
 							event_target:sabuktigin_target_province = {
 								event_target:sabuktigin = {		
@@ -4146,94 +4039,7 @@ character_event = {
 	
 	immediate = {
 		# Create some extra courtiers
-		create_random_diplomat = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 30
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_random_priest = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 35
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_random_soldier = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 30
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_random_soldier = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 25
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_random_soldier = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = no
-			age = 22
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_character = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = yes
-			age = 16
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_character = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = yes
-			age = 17
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
-		create_character = {
-			random_traits = yes
-			dynasty = none
-			religion = ROOT
-			culture = ROOT
-			female = yes
-			age = 18
-		}
-		new_character = {
-			opinion = { who = ROOT modifier = opinion_loyal_servant multiplier = 2 }
-		}
+		emf_create_courtiers_for_ROOT = yes
 	}
 }
 
@@ -4451,8 +4257,6 @@ narrative_event = {
 	picture = "GFX_evt_mongols"
 	border = "GFX_event_narrative_frame_war"
 	
-	only_independent = yes
-	only_playable = yes
 	religion = hip_religion
 	
 	trigger = {
@@ -4465,6 +4269,14 @@ narrative_event = {
 				}
 				total_years_played = 50
 			}
+			AND = {
+				has_game_rule = {
+					name = mongol_invasion
+					value = delayed_random
+				}
+				year = 1000
+				total_years_played = 50
+			}
 		}
 		NOR = { 
 			year = 1218
@@ -4474,6 +4286,13 @@ narrative_event = {
 			}
 		}
 		has_landed_title = e_hip
+		e_mongol_empire = { has_holder = no }
+		NOT = {
+			any_player = {
+				is_nomadic = yes
+				culture = mongol
+			}
+		}
 		NOT = { has_global_flag = mongol_empire_arrival }
 	}
 	
@@ -4494,179 +4313,74 @@ narrative_event = {
 				value = random
 			}
 		}
+		modifier = {
+			factor = 44
+			has_game_rule = {
+				name = mongol_invasion
+				value = delayed_random
+			}
+		}
 	}
 	
 	immediate = {
+		log = "60500: spawning Temujin for invasion"
 		1457 = { save_event_target_as = emf_target_province } # Ordu Baliq
 
 		set_global_flag = mongol_empire_arrival
 		activate_title = { title = e_mongol_empire status = yes }
 		
-		if = {
-			limit = {
-				has_global_flag = temujin_born
+		create_character = {
+			random_traits = no
+			name = "Temujin"
+			dynasty = 11100
+			dna = "bfimkolbecc"
+			properties = "ge0af0000000"
+			age = 43
+			attributes = {
+				martial = 10
+				diplomacy = 8
+				intrigue = 8
+				stewardship = 9
 			}
-			if = {
-				limit = {
-					any_independent_ruler = {
-						has_character_flag = is_temujin
-						demesne_size = 1
-						ai = yes
-					}
-				}
-				log = "Temujin exists as independent ai"
-				random_independent_ruler = {
-					limit = {
-						has_character_flag = is_temujin
-						ai = yes
-					}
-					any_demesne_title = {
-						limit = {
-							tier = EMPEROR
-						}
-						set_title_flag = to_be_destroyed
-					}
-					e_mongol_empire = {
-						set_title_landless = { title = THIS status = yes }
-						set_title_flag = temporary_landless_title
-						grant_title = PREV
-					}
-					any_demesne_title = {
-						limit = {
-							has_title_flag = to_be_destroyed
-						}
-						activate_title = { title = THIS status = no }
-						emf_destroy_title_effect = yes
-					}
-					wealth = 5000
-					prestige = 5000
-					set_character_flag = horde_invader
-					character_event = { id = 60510 } # Spawn troops
-					character_event = { id = 60515 days = 1 } # Spawn population
-					character_event = { id = emf_empires.14 } # Declare war
-				}
-				break = yes
-			}
-			if = {
-				limit = {
-					NOT = {
-						e_mongol_empire = {
-							holder_scope = {
-								always = yes
-							}
-						}
-					}
-				}
-				log = "Real Temujin didn't recieve title"
-				create_character = {
-					random_traits = yes
-					dynasty = random
-					religion = tengri_pagan
-					culture = mongol
-					female = no
-					age = 24
-					attributes = {
-						martial = 12
-					}
-					trait = brilliant_strategist
-					trait = ambitious
-					trait = diligent
-					trait = brave
-				}
-				new_character = {
-					set_character_flag = is_temujin
-					e_mongol_empire = {
-						set_title_landless = { title = THIS status = yes }
-						set_title_flag = temporary_landless_title
-						grant_title = PREV
-					}
-					set_defacto_liege = THIS
-					if = {
-						limit = {
-							has_dlc = "Horse Lords"
-						}
-						set_government_type = nomadic_government
-					}
-					if = {
-						limit = {
-							NOT = { has_dlc = "Horse Lords" }
-						}
-						set_government_type = tribal_government
-					}
-					wealth = 15000
-					set_character_flag = horde_invader
-					prestige = 5000
-					character_event = { id = 60505 } # Spawn Temujins generals
-					character_event = { id = 60509 } # Spawn courtiers
-					character_event = { id = 60510 } # Spawn troops
-					character_event = { id = 60515 days = 1 } # Spawn population
-					character_event = { id = emf_empires.14 } # Declare war
-				}
-			}
+			health = 6
+			fertility = 0.7
+			religion = tengri_pagan
+			culture = mongol
+			trait = adventurer
+			trait = brave
+			trait = ambitious
+			trait = diligent
+			trait = cruel
+			trait = hunter
+			trait = cavalry_leader
+			trait = brilliant_strategist
 		}
-		if = {
-			limit = {
-				NOT = {
-					e_mongol_empire = {
-						holder_scope = { always = yes }
-					}
-				}
+			
+		new_character = {
+			set_character_flag = is_temujin
+			emf_new_character_effect = yes
+			e_mongol_empire = {
+				set_title_landless = { title = THIS status = yes }
+				set_title_flag = temporary_landless_title
+				grant_title = PREV
 			}
-			log = "Spawning Temujin for invasion"
-			create_character = {
-				name="Temujin"
-				# AKA: Genghis Khan
-				dynasty=11100
-				dna="bfimkolbecc"
-				properties="ge0af0000000"
-				age = 43
-				attributes = {
-					martial=10
-					diplomacy=8
-					intrigue=8
-					stewardship=9
-				}
-				health = 6
-				fertility = 0.7
-				religion="tengri_pagan"
-				culture="mongol"
-				trait="brave"
-				trait="ambitious"
-				trait="diligent"
-				trait="cruel"
-				trait="hunter"
-				trait="cavalry_leader"
-				trait="brilliant_strategist"
+			set_defacto_liege = THIS
+			if = {
+				limit = { has_dlc = "Horse Lords" }
+				set_government_type = nomadic_government
 			}
-			new_character = {
-				set_character_flag = is_temujin
-				e_mongol_empire = {
-					set_title_landless = { title = THIS status = yes }
-					set_title_flag = temporary_landless_title
-					grant_title = PREV
-				}
-				set_defacto_liege = THIS
-				if = {
-					limit = {
-						has_dlc = "Horse Lords"
-					}
-					set_government_type = nomadic_government
-				}
-				if = {
-					limit = {
-						NOT = { has_dlc = "Horse Lords" }
-					}
-					set_government_type = tribal_government
-				}
-				wealth = 15000
-				set_character_flag = horde_invader
-				prestige = 5000
-				character_event = { id = 60505 } # Spawn Temujins generals
-				character_event = { id = 60509 } # Spawn courtiers
-				character_event = { id = 60510 } # Spawn troops
-				character_event = { id = 60515 days = 1 } # Spawn population
-				character_event = { id = emf_empires.14 } # Declare war
+			if = {
+				limit = { NOT = { has_dlc = "Horse Lords" } }
+				set_government_type = tribal_government
 			}
+			wealth = 15000
+			set_character_flag = horde_invader
+			prestige = 5000
+			character_event = { id = 60505 } # Spawn Temujins generals
+			character_event = { id = 60509 } # Spawn courtiers
+			character_event = { id = 60510 } # Spawn troops
+			character_event = { id = 60515 days = 1 } # Spawn population
+			character_event = { id = emf_mongol.1000 } # Declare war
 		}
 	}
 	
@@ -4699,6 +4413,7 @@ narrative_event = {
 		}
 	}
 }
+
 # Remove landless status fired from on_action
 character_event = {
 	id = 60504
@@ -4724,6 +4439,7 @@ character_event = {
 		}
 	}
 }
+
 # Spawn mongol leaders
 character_event = {
 	id = 60505
@@ -4731,111 +4447,479 @@ character_event = {
 	is_triggered_only = yes
 	
 	immediate = {
+		# Yesügei, Temujin's father
+		create_character = {
+			name = "Yesügei"
+			age = 62
+			dynasty = ROOT
+			religion = ROOT
+			culture = ROOT
+			female = no
+			trait = skilled_tactician
+			random_traits = yes
+		}
+		new_character = {
+			save_event_target_as = temujin_father
+			ROOT = { set_father = PREV }
+		}
+		
+		# Hoelun, Temujin's mother
+		create_character = {
+			name = "Hoelun"
+			age = 58
+			dynasty = 101946
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			health = 7.5
+			random_traits = yes
+		}
+		new_character = {
+			save_event_target_as = temujin_mother
+			ROOT = { set_mother = PREV }
+			add_spouse = event_target:temujin_father
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+		}
+		
+		# Hasar, Temujin's brother
+		create_character = {
+			random_traits = yes
+			name = "Hasar"
+			age = 42
+			female = no
+			dynasty = ROOT
+			religion = ROOT
+			culture = ROOT
+			attributes = {
+				martial = 8
+			}
+			trait = skilled_tactician
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			set_father = event_target:temujin_father
+			set_mother = event_target:temujin_mother
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+			ROOT = {
+				create_character = {
+					name = "Yesüngge"
+					random_traits = yes
+					dynasty = ROOT
+					religion = ROOT
+					culture = ROOT
+					female = no
+					age = 3
+				}
+				new_character = {
+					set_father = PREVPREV
+					opinion = { who = ROOT modifier = opinion_loyal_servant }
+				}
+			}
+		}
+		
+		# Hachiun, Temujin's second brother
+		create_character = {
+			random_traits = yes
+			name = "Hachiun"
+			age = 40
+			female = no
+			dynasty = ROOT
+			religion = ROOT
+			culture = ROOT
+			attributes = {
+				martial = 8
+			}
+			trait = skilled_tactician
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			set_father = event_target:temujin_father
+			set_mother = event_target:temujin_mother
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+		}
+		
+		# Temüge, Temujin's youngest brother
+		create_character = {
+			random_traits = yes
+			name = "Temüge"
+			age = 37
+			female = no
+			dynasty = ROOT
+			religion = ROOT
+			culture = ROOT
+			health = 7.0
+			trait = slothful
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			set_father = event_target:temujin_father
+			set_mother = event_target:temujin_mother
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+			ROOT = {
+				create_character = {
+					name = "Jibügan"
+					random_traits = yes
+					dynasty = ROOT
+					religion = ROOT
+					culture = ROOT
+					female = no
+					age = 13
+				}
+				new_character = {
+					set_father = PREVPREV
+					opinion = { who = ROOT modifier = opinion_loyal_servant }
+				}
+			}
+		}
+		
+		event_target:temujin_father = { death = { death_reason = death_battle } }
+		
+		# Belgütei, Temujin's half-brother
+		create_character = {
+			random_traits = yes
+			name = "Belgütei"
+			age = 37
+			dynasty = ROOT
+			religion = ROOT
+			culture = ROOT
+			attributes = {
+				diplomacy = 8
+			}
+			trait = charismatic_negotiator
+			trait = child_of_consort
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			set_father = event_target:temujin_father
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+		}
+		
+		# Borte, Temujin's wife
 		create_character = {
 			name = "Borte"
-			age = 49
+			age = 44
 			dynasty = 1041000
-			religion = tengri_pagan
-			culture = mongol
+			religion = ROOT
+			culture = ROOT
 			female = yes
 			random_traits = yes
 		}
 		new_character = {
+			emf_new_character_effect = yes
 			save_event_target_as = borte
 			add_spouse = ROOT
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
 		}
+		
+		# Subutai, Temujin's primary general
 		create_character = {
-			name="Subutai"
+			name = "Subutai"
 			age = 35
-			religion="tengri_pagan"
-			culture="mongol"
+			dynasty = 7315
+			religion = ROOT
+			culture = ROOT
 			attributes = {
-				martial=10
-				diplomacy=4
-				intrigue=6
-				stewardship=6
+				martial = 10
+				diplomacy = 4
+				intrigue = 6
+				stewardship = 6
 			}
-			trait="brave"
-			trait="strong"
-			trait="quick"
-			trait="diligent"
-			trait="brilliant_strategist"
-			trait="trickster"
-		}
-		create_character = {
-			name="Chagatai" 
-			age = 27
-			dynasty=11100
-			religion="tengri_pagan"
-			culture="mongol"
-			trait="skilled_tactician"
-			trait="wroth"
-			trait="just"
-			trait="drunkard"
+			trait = brave
+			trait = strong
+			trait = quick
+			trait = diligent
+			trait = brilliant_strategist
+			trait = trickster
 		}
 		new_character = {
-			set_father = ROOT
-			set_mother = event_target:borte
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
 		}
-		create_character = {
-			name="Ogodei" # Ögedei Khan
-			age = 24
-			dynasty=11100
-			religion="tengri_pagan"
-			culture="mongol"
-			trait="skilled_tactician"
-			trait="gregarious"
-			trait="just"
-		}
-		new_character = {
-			set_father = ROOT
-			set_mother = event_target:borte
-		}
-		create_character = {
-			name="Jochi"
-			age = 29
-			dynasty=11100
-			religion="tengri_pagan"
-			culture="mongol"
-			trait="skilled_tactician"
-			trait="hunter"
-			trait="kind"
-			trait="patient"
-		}
-		new_character = {
-			set_father = ROOT
-			set_mother = event_target:borte
-		}
-		create_character = {
-			name="Tolui"
-			age = 18
-			dynasty=11100
-			religion="tengri_pagan"
-			culture="mongol"
-			random_traits = yes
-		}
-		new_character = {
-			set_father = ROOT
-			set_mother = event_target:borte
-		}
+		
+		# Chepe, Temujin's secondary general
 		create_character = {
 			name="Jebe"
-			#AKA Chepe
+			dynasty = 7317
 			age = 50
-			dynasty = random
-			religion="tengri_pagan"
-			culture="mongol"
+			religion = ROOT
+			culture = ROOT
 			attributes = {
-				martial=10
-				diplomacy=5
-				intrigue=5
-				stewardship=4
+				martial = 10
+				diplomacy = 5
+				intrigue = 5
+				stewardship = 4
 			}
-			trait="skilled_tactician"
-			trait="brave"
+			trait = skilled_tactician
+			trait = brave
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+		}
+
+		# Jochi, eldest son
+		create_character = {
+			random_traits = no
+			name = "Jochi"
+			age = 24
+			dynasty = ROOT
+			religion = ROOT
+			culture = ROOT
+			attributes = {
+				martial = 8
+			}
+			trait = skilled_tactician
+			trait = hunter
+			trait = kind
+			trait = patient
+		}
+		new_character = {
+			prestige = 500
+			emf_new_character_effect = yes
+			set_father = ROOT
+			set_mother = event_target:borte
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+			set_character_flag = line_of_jochi
+			ROOT = {
+				create_character = {
+					name = "Sarkan"
+					random_traits = yes
+					dynasty = 1041002
+					religion = ROOT
+					culture = ROOT
+					female = yes
+					age = 19
+				}
+				new_character = {
+					emf_new_character_effect = yes
+					add_spouse = PREVPREV
+					opinion = { who = ROOT modifier = opinion_loyal_servant }
+					ROOT = {
+						create_character = {
+							name = "Batu"
+							random_traits = yes
+							dynasty = ROOT
+							religion = ROOT
+							culture = ROOT
+							female = no
+							age = 2
+							attributes = {
+								martial = 4
+							}
+						}
+						new_character = {
+							set_father = PREVPREVPREVPREV
+							set_mother = PREVPREV
+							opinion = { who = ROOT modifier = opinion_loyal_servant }
+						}
+					}
+				}
+			}
+		}
+
+		# Chagatai, second son
+		create_character = {
+			random_traits = no
+			dynasty = ROOT
+			name = "Chagatai"
+			culture = ROOT
+			religion = ROOT
+			age = 22
+			trait = skilled_tactician
+			trait = wroth
+			trait = just
+			trait = drunkard
+		}
+		new_character = {
+			prestige = 500
+			emf_new_character_effect = yes
+			set_father = ROOT
+			set_mother = event_target:borte
+			set_character_flag = line_of_chagatai
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+			ROOT = {
+				create_character = {
+					name = "Ebuskun"
+					random_traits = yes
+					dynasty = 1041001
+					religion = ROOT
+					culture = ROOT
+					female = yes
+					age = 21
+					trait = quick
+				}
+				new_character = {
+					emf_new_character_effect = yes
+					add_spouse = PREVPREV
+					opinion = { who = ROOT modifier = opinion_loyal_servant }
+					ROOT = {
+						create_character = {
+							name = "Mö'etüken"
+							random_traits = yes
+							dynasty = ROOT
+							religion = ROOT
+							culture = ROOT
+							female = no
+							trait = conscientious
+							attributes = {
+								martial = 6
+								intrigue = 3
+							}
+							age = 5
+						}
+						new_character = {
+							set_mother = PREVPREV
+							set_father = PREVPREVPREVPREV
+							opinion = { who = ROOT modifier = opinion_loyal_servant }
+						}
+						create_character = {
+							name = "Yesü Mongke" 
+							random_traits = yes
+							dynasty = ROOT
+							religion = ROOT
+							culture = ROOT
+							female = no
+							age = 3
+							trait = rowdy
+							trait = quick
+							attributes = {
+								martial = 4
+								diplomacy = 3
+							}
+						}
+						new_character = {
+							set_mother = PREVPREV
+							set_father = PREVPREVPREVPREV
+							opinion = { who = ROOT modifier = opinion_loyal_servant }
+						}
+					}
+				}
+			}
+		}
+		
+		# Ogodei, third son
+		create_character = {
+			random_traits = no
+			dynasty = ROOT
+			name = "Ogodei"
+			culture = ROOT
+			religion = ROOT
+			age = 19
+			attributes = {
+				diplomacy = 8
+			}
+			trait = skilled_tactician
+			trait = gregarious
+			trait = just
+			trait = hunter
+			trait = ambitious
+		}
+		new_character = {
+			prestige = 500
+			emf_new_character_effect = yes
+			set_father = ROOT
+			set_mother = event_target:borte
+			set_character_flag = line_of_ogodei
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+			ROOT = {
+				create_character = {
+					name = "Töregene"
+					random_traits = yes
+					dynasty = 1041001
+					religion = ROOT
+					culture = ROOT
+					female = yes
+					age = 17
+				}
+				new_character = {
+					emf_new_character_effect = yes
+					add_spouse = PREVPREV
+					opinion = { who = ROOT modifier = opinion_loyal_servant }
+					ROOT = {
+						create_character = {
+							name = "Guyug"
+							random_traits = yes
+							dynasty = ROOT
+							religion = ROOT
+							culture = ROOT
+							female = no
+							age = 1
+							trait = affectionate
+						}
+						new_character = {
+							set_mother = PREVPREV
+							set_father = PREVPREVPREVPREV
+							opinion = { who = ROOT modifier = opinion_loyal_servant }
+						}
+					}
+				}
+			}
+		}
+		
+		# Tolui, fourth son
+		create_character = {
+			dynasty = ROOT
+			name = "Tolui"
+			random_traits = yes
+			culture = ROOT
+			religion = ROOT
+			attributes = {
+				martial = 4
+				stewardship = 8
+			}
+			age = 13
+			trait = conscientious
+			trait = timid
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			set_father = ROOT
+			set_mother = event_target:borte
+			set_character_flag = line_of_tolui
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+		}
+		
+		# Daughters
+		create_character = {
+			random_traits = yes
+			female = yes
+			dynasty = ROOT
+			name = "Khochen"
+			culture = ROOT
+			religion = ROOT
+			age = 20
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			set_father = ROOT
+			set_mother = event_target:borte
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+		}
+		create_character = {
+			random_traits = yes
+			female = yes
+			dynasty = ROOT
+			name = "Alakhai"
+			culture = ROOT
+			religion = ROOT
+			age = 14
+			trait = strong
+			trait = fair
+			attributes = {
+				martial = 4
+				diplomacy = 6
+				stewardship = 6
+			}
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			set_father = ROOT
+			set_mother = event_target:borte
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
 		}
 	}
 }
+
 # Spawn extra courtiers
 character_event = {
 	id = 60509
@@ -4851,13 +4935,9 @@ character_event = {
 			female = no
 			age = 16
 		}
-		create_character = {
-			random_traits = yes
-			dynasty = none
-			religion = tengri_pagan
-			culture = ROOT
-			female = no
-			age = 18
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
 		}
 		create_character = {
 			random_traits = yes
@@ -4866,6 +4946,22 @@ character_event = {
 			culture = ROOT
 			female = no
 			age = 18
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = tengri_pagan
+			culture = ROOT
+			female = no
+			age = 18
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
 		}
 		create_character = {
 			random_traits = yes
@@ -4874,6 +4970,10 @@ character_event = {
 			culture = ROOT
 			female = no
 			age = 20
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
 		}
 		create_character = {
 			random_traits = yes
@@ -4883,6 +4983,10 @@ character_event = {
 			female = no
 			age = 25
 		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+		}
 		create_character = {
 			random_traits = yes
 			dynasty = none
@@ -4890,6 +4994,10 @@ character_event = {
 			culture = ROOT
 			female = no
 			age = 26
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
 		}
 		create_character = {
 			random_traits = yes
@@ -4899,6 +5007,10 @@ character_event = {
 			female = no
 			age = 28
 		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+		}
 		create_character = {
 			random_traits = yes
 			dynasty = none
@@ -4906,6 +5018,10 @@ character_event = {
 			culture = ROOT
 			female = yes
 			age = 16
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
 		}
 		create_character = {
 			random_traits = yes
@@ -4915,13 +5031,9 @@ character_event = {
 			female = yes
 			age = 17
 		}
-		create_character = {
-			random_traits = yes
-			dynasty = none
-			religion = tengri_pagan
-			culture = ROOT
-			female = yes
-			age = 18
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
 		}
 		create_character = {
 			random_traits = yes
@@ -4930,6 +5042,22 @@ character_event = {
 			culture = ROOT
 			female = yes
 			age = 18
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = tengri_pagan
+			culture = ROOT
+			female = yes
+			age = 18
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
 		}
 		create_character = {
 			random_traits = yes
@@ -4938,6 +5066,10 @@ character_event = {
 			culture = ROOT
 			female = yes
 			age = 20
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
 		}
 		create_character = {
 			random_traits = yes
@@ -4951,6 +5083,10 @@ character_event = {
 			}
 			trait = brilliant_strategist
 		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+		}
 		create_character = {
 			random_traits = yes
 			dynasty = none
@@ -4962,6 +5098,10 @@ character_event = {
 				martial = 12
 			}
 			trait = brilliant_strategist
+		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
 		}
 		create_character = {
 			random_traits = yes
@@ -4975,6 +5115,10 @@ character_event = {
 			}
 			trait = brilliant_strategist
 		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+		}
 		create_character = {
 			random_traits = yes
 			dynasty = none
@@ -4987,8 +5131,13 @@ character_event = {
 			}
 			trait = brilliant_strategist
 		}
+		new_character = {
+			emf_new_character_effect = yes
+			opinion = { who = ROOT modifier = opinion_loyal_servant }
+		}
 	}
 }
+
 # Spawn mongol troops
 character_event = {
 	id = 60510
@@ -4996,32 +5145,32 @@ character_event = {
 	is_triggered_only = yes
 	
 	immediate = {
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
 		random = {
 			chance = 50
-			emf_empires_spawn_mongol_unit_effect = yes
-			emf_empires_spawn_mongol_unit_effect = yes
-			emf_empires_spawn_mongol_unit_effect = yes
+			emf_mongol_spawn_unit = yes
+			emf_mongol_spawn_unit = yes
+			emf_mongol_spawn_unit = yes
 		}
 		random = {
 			chance = 50
-			emf_empires_spawn_mongol_unit_effect = yes
-			emf_empires_spawn_mongol_unit_effect = yes
-			emf_empires_spawn_mongol_unit_effect = yes
+			emf_mongol_spawn_unit = yes
+			emf_mongol_spawn_unit = yes
+			emf_mongol_spawn_unit = yes
 		}
 	}
 }
@@ -5161,6 +5310,7 @@ narrative_event = {
 		}
 	}
 }
+
 # Ai - reinforcement event for Genghis decision
 character_event = {
 	id = 60530
@@ -5169,10 +5319,10 @@ character_event = {
 	
 	immediate = {
 		capital_scope = { save_event_target_as = emf_target_province }
-		emf_empires_spawn_mongol_unit_effect = yes	
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
-		emf_empires_spawn_mongol_unit_effect = yes
+		emf_mongol_spawn_unit = yes	
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
+		emf_mongol_spawn_unit = yes
 	}
 }
 

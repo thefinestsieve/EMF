@@ -590,6 +590,7 @@ narrative_event = {
 			}
 		}
 		new_character = {
+			emf_new_character_effect = yes
 			d_manichean = { grant_title = PREV }
 			set_defacto_liege = ROOT
 			emf_liege_change_effect = yes
@@ -1503,6 +1504,7 @@ province_event = {
 			trait = peasant_leader
 		}
 		new_character = {
+			emf_new_character_effect = yes
 			save_event_target_as = nationalist_revolt_leader
 			set_character_flag = nationalist_rebel
 			prestige = 200
@@ -1579,6 +1581,7 @@ character_event = {
 		}
 		event_target:revolt_location = {
 			new_character = {
+				emf_new_character_effect = yes
 				ROOT = {
 					add_spouse = PREV
 					add_lover = PREV
@@ -1619,6 +1622,7 @@ character_event = {
 		}
 		event_target:revolt_location = {
 			new_character = {
+				emf_new_character_effect = yes
 				opinion = { who = ROOT modifier = opinion_loyal_servant years = 20 }
 				spawn_unit = {
 					province = PREV
@@ -1655,6 +1659,7 @@ character_event = {
 		}
 		event_target:revolt_location = {
 			new_character = {
+				emf_new_character_effect = yes
 				opinion = { who = ROOT modifier = opinion_loyal_servant years = 20 }
 				spawn_unit = {
 					province = PREV
@@ -1816,6 +1821,7 @@ narrative_event = {
 			}
 		}
 		new_character = {
+			emf_new_character_effect = yes
 			d_mazdaki = { grant_title = PREV }
 			set_defacto_liege = ROOT
 			emf_liege_change_effect = yes
@@ -4447,6 +4453,7 @@ province_event = {
 		}
 
 		new_character = {
+			emf_new_character_effect = yes
 			set_character_flag = heretic_revolter			
 			create_title = {
 				tier = DUKE
@@ -4487,6 +4494,7 @@ province_event = {
 				trait = peasant_leader
 			}
 			new_character = {
+				emf_new_character_effect = yes
 				spawn_unit = {
 					province = ROOT
 					home = ROOT
@@ -4516,6 +4524,7 @@ province_event = {
 				trait = peasant_leader
 			}
 			new_character = {
+				emf_new_character_effect = yes
 				spawn_unit = {
 					province = ROOT
 					home = ROOT
@@ -7376,6 +7385,7 @@ character_event = {
 				}
 				new_character = {
 					add_lover = ROOT
+					emf_new_character_effect = yes
 				}
 			}
 			30 = {
@@ -7399,6 +7409,7 @@ character_event = {
 				}
 				new_character = {
 					add_lover = ROOT
+					emf_new_character_effect = yes
 				}
 			}
 		}
@@ -9647,6 +9658,7 @@ narrative_event = {
 						trait = brilliant_strategist
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						opinion = { who = PREV modifier = opinion_loyal_vassal multiplier = 2 }
 						spawn_unit = {
 							province = PREVPREV
@@ -9670,6 +9682,7 @@ narrative_event = {
 						trait = brilliant_strategist
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						opinion = { who = PREV modifier = opinion_loyal_vassal multiplier = 2 }
 						spawn_unit = {
 							province = PREVPREV
@@ -9693,6 +9706,7 @@ narrative_event = {
 						trait = skilled_tactician
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						opinion = { who = PREV modifier = opinion_loyal_vassal multiplier = 2 }
 						spawn_unit = {
 							province = PREVPREV
@@ -9715,6 +9729,7 @@ narrative_event = {
 						trait = skilled_tactician
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						opinion = { who = PREV modifier = opinion_loyal_vassal multiplier = 2 }
 						spawn_unit = {
 							province = PREVPREV
@@ -9737,6 +9752,7 @@ narrative_event = {
 						trait = skilled_tactician
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						opinion = { who = PREV modifier = opinion_loyal_vassal multiplier = 2 }
 						spawn_unit = {
 							province = PREVPREV
@@ -9759,6 +9775,7 @@ narrative_event = {
 						trait = skilled_tactician
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						opinion = { who = PREV modifier = opinion_loyal_vassal multiplier = 2 }
 						spawn_unit = {
 							province = PREVPREV
@@ -9781,6 +9798,7 @@ narrative_event = {
 						trait = brilliant_strategist
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						opinion = { who = PREV modifier = opinion_loyal_vassal multiplier = 2 }
 						spawn_unit = {
 							province = PREVPREV
@@ -9804,6 +9822,7 @@ narrative_event = {
 						trait = skilled_tactician
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						opinion = { who = PREV modifier = opinion_loyal_vassal multiplier = 2 }
 						spawn_unit = {
 							province = PREVPREV
@@ -9827,6 +9846,7 @@ narrative_event = {
 						trait = skilled_tactician
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						opinion = { who = PREV modifier = opinion_loyal_vassal multiplier = 2 }
 						spawn_unit = {
 							province = PREVPREV
@@ -9849,6 +9869,7 @@ narrative_event = {
 						age = 50
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						opinion = { who = PREV modifier = opinion_loyal_vassal multiplier = 2 }
 					}
 					create_random_diplomat = {
@@ -9860,6 +9881,7 @@ narrative_event = {
 						age = 40
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						opinion = { who = PREV modifier = opinion_loyal_vassal multiplier = 2 }
 					}
 					create_random_intriguer = {
@@ -9871,6 +9893,7 @@ narrative_event = {
 						age = 40
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						opinion = { who = PREV modifier = opinion_loyal_vassal multiplier = 2 }
 					}
 					war = {
@@ -10007,6 +10030,7 @@ character_event = {
 				}
 				new_character = {
 					add_spouse = ROOT
+					emf_new_character_effect = yes
 				}
 				break = yes
 			}
@@ -10021,6 +10045,7 @@ character_event = {
 		}
 		new_character = {
 			add_spouse = ROOT
+			emf_new_character_effect = yes
 		}
 	}
 }
@@ -10764,12 +10789,13 @@ character_event = {
 					1 = { add_trait = trusting }
 				}
 			}
+			emf_new_character_effect = yes
 		}
 		recalc_succession = yes
 	}
 }
 
-# Council of Saint-Félix
+# Council of Saint-Felix
 province_event = {
 	id = emf_heresy.2010
 	
@@ -10942,6 +10968,7 @@ narrative_event = {
 			new_character = {
 				set_character_flag = title_monk
 				set_special_character_title = MONK_BROTHER
+				emf_new_character_effect = yes
 			}
 		}
 	}
@@ -11075,6 +11102,7 @@ character_event = {
 			set_defacto_liege = ROOT
 			emf_liege_change_effect = yes
 			save_event_target_as = new_cathar_pope
+			emf_new_character_effect = yes
 		}
 		narrative_event = { id = emf_heresy.2014 }
 	}
@@ -11087,7 +11115,6 @@ narrative_event = {
 	desc = EVTDESC_emf_heresy_2014
 	picture = GFX_evt_pope
 	border = GFX_event_narrative_frame_religion
-	sound = church_bells
 
 	major = yes
 
@@ -11216,6 +11243,7 @@ narrative_event = {
 						save_event_target_as = lollard_founder
 						set_character_flag = title_monk
 						set_special_character_title = MONK_BROTHER
+						emf_new_character_effect = yes
 					}
 				}
 			}
@@ -11242,6 +11270,7 @@ narrative_event = {
 					}
 					new_character = {
 						save_event_target_as = lollard_founder
+						emf_new_character_effect = yes
 					}
 				}
 			}
@@ -11499,6 +11528,7 @@ narrative_event = {
 	
 	option = {
 		name = EVTOPTA_emf_heresy_2018
+		trigger = { character = ROOT }
 		clr_character_flag = bible_translation_begun
 		set_global_flag = bible_translation_finished
 		piety = 250
@@ -11887,6 +11917,7 @@ character_event = {
 			set_defacto_liege = ROOT
 			emf_liege_change_effect = yes
 			save_event_target_as = new_lollard_primate
+			emf_new_character_effect = yes
 		}
 		narrative_event = { id = emf_heresy.2071 }
 	}
@@ -11899,7 +11930,6 @@ narrative_event = {
 	desc = EVTDESC_emf_heresy_2071
 	picture = GFX_evt_lollard_heresy
 	border = GFX_event_narrative_frame_religion
-	sound = church_bells
 
 	major = yes
 
@@ -11976,6 +12006,7 @@ narrative_event = {
 		new_character = {
 			set_character_flag = title_monk
 			set_special_character_title = MONK_BROTHER
+			emf_new_character_effect = yes
 			character_event = { id = emf_heresy.2026 }
 		}
 	}
@@ -12277,6 +12308,7 @@ narrative_event = {
 				name = voice_of_jesus
 				duration = -1
 			}
+			emf_new_character_effect = yes
 		}
 		random_realm_province = {
 			limit = {
@@ -14195,6 +14227,7 @@ narrative_event = {
 			d_saint_blaise = {
 				grant_title = PREV
 			}
+			emf_new_character_effect = yes
 		}
 	}
 	
@@ -14238,6 +14271,7 @@ narrative_event = {
 			d_knights_saint_mark = {
 				grant_title = PREV
 			}
+			emf_new_character_effect = yes
 		}
 	}
 	
@@ -14285,10 +14319,7 @@ character_event = {
 		months = 72
 		modifier = {
 			factor = 1.5
-			OR = {
-				is_councillor = yes
-				is_voter = yes
-			}
+			emf_is_voter_trigger = yes
 		}
 		modifier = {
 			factor = 2
@@ -14459,8 +14490,11 @@ character_event = {
 # Religion head chooses result
 character_event = {
 	id = emf_heresy.2076
+	title = EVTNAME_emf_heresy_2075
+	desc = EVTDESC_emf_heresy_2076
+	picture = GFX_evt_heresy_defeated
+	border = GFX_event_normal_frame_religion
 	
-	hide_window = yes
 	is_triggered_only = yes
 	
 	option = {
@@ -14469,7 +14503,7 @@ character_event = {
 			factor = 30
 		}
 		FROM = {
-			narrative_event = { id = emf_heresy.2077 }
+			narrative_event = { id = emf_heresy.2077 tooltip = LET_THEM_SEPARATE }
 		}
 	}
 	option = {
@@ -14567,23 +14601,25 @@ character_event = {
 				}
 			}
 		}
-		FROM = {
-			narrative_event = { id = emf_heresy.2078 }
-		}
-		any_independent_ruler = {
-			limit = {
-				religion = ROOT
-				war = no
-				NOT = { trait = excommunicated }
-				NOT = { has_non_aggression_pact_with = event_target:sponsor }
-				NOT = { is_allied_with = event_target:sponsor }
-				any_realm_province = {
-					any_neighbor_province = {
-						owner = { same_realm = event_target:sponsor }
+		hidden_tooltip = {
+			FROM = {
+				narrative_event = { id = emf_heresy.2078 }
+			}
+			any_independent_ruler = {
+				limit = {
+					religion = ROOT
+					war = no
+					NOT = { trait = excommunicated }
+					NOT = { has_non_aggression_pact_with = event_target:sponsor }
+					NOT = { is_allied_with = event_target:sponsor }
+					any_realm_province = {
+						any_neighbor_province = {
+							owner = { same_realm = event_target:sponsor }
+						}
 					}
 				}
+				letter_event = { id = emf_heresy.2079 days = 5 }
 			}
-			letter_event = { id = emf_heresy.2079 days = 5 }
 		}
 	}
 }
@@ -15577,6 +15613,35 @@ narrative_event = {
 	}
 }
 
+# Paulician Patriarch title falls to non-Paulician
+character_event = {
+	id = emf_heresy.2108
+	
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		FROM = { title = d_paulician }
+		NOT = { religion = paulician }
+	}
+	
+	immediate = {
+		d_paulician = {
+			if = {
+				limit = {
+					FROMFROM = {
+						is_alive = yes
+						religion = paulician
+					}
+				}
+				grant_title_no_opinion = FROMFROM
+				break = yes
+			}
+			unsafe_destroy_landed_title = THIS
+		}
+	}
+}
+
 #######################################
 # BOGOMILIST EVENTS
 #######################################
@@ -15703,6 +15768,7 @@ narrative_event = {
 						}
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						religion_authority = { modifier = bogomil_appears }
 					}
 				}
@@ -17285,6 +17351,7 @@ character_event = {
 			}
 			set_defacto_liege = ROOT
 			emf_liege_change_effect = yes
+			emf_new_character_effect = yes
 			save_event_target_as = new_bogomilist_patriarch
 		}
 		narrative_event = { id = emf_heresy.2134 }
@@ -17298,7 +17365,6 @@ narrative_event = {
 	desc = EVTDESC_emf_heresy_2134
 	picture = GFX_evt_icon
 	border = GFX_event_narrative_frame_religion
-	sound = church_bells
 
 	major = yes
 
@@ -17583,6 +17649,7 @@ character_event = {
 						}
 					}
 					new_character = {
+						emf_new_character_effect = yes
 						set_character_flag = bogomilist_missionary
 					}
 				}	

@@ -1,6 +1,178 @@
-EMF 6.02 [BETA]
+EMF 6.06 [BETA]
+	*MAJOR:*
+		Nomads:
+			Nomads who settle may now do so only as tribals, they cannot settle directly to feudal or merchant republic.
+			Settling is done via the county title (right-click on the county title to access the *Adopt Tribalism* decision) and may be performed on personally-owned counties where either a tribal holding already exists or one can be constructed (there will need to be an empty holding slot, and the province either needs to contain a castle, contain a temple if the nomad is Muslim, or the nomad's capital must contain a 2nd-level Baghatur Council). The process works roughly as before, save for the fact that all clan vassals will be given the option of either also going tribal and remaining your vassal or staying nomadic and becoming independent. They are only likely to go independent if they personally hold at least three provinces and their capital is in the steppes.
+			Settling in a province which isn't also your current capital now properly converts nomadic buildings to tribal (in the newly-constructed tribal holding).
+			The new tribal realm has some starting Tribal Organization. For pagans, it is Low. For non-pagans or reformed pagans without a castle in their capital province, it is Medium. For non-pagans or reformed pagans with a castle in their capital province, it is High.
+			Altaic tribal rulers who are independent, have 1000 Prestige, and are either Duke or King tier now have a decision which allows them to go nomadic.
+		[WIP] New game rule: *Historical Outcome Promotion*
+			*Default:*
+				EMF will strike a compromise between a passive sandbox and aggressively promoting in-game historical outcomes.
+			*Aggressive:*
+				EMF will aggressively try to promote historical outcomes in your campaign where possible and within reason.
+			*Passive:*
+				EMF will only passively promote historical outcomes. This is essentially a sandbox and shouldn't be expected to lead to any specific historical outcomes.
 	*CHANGES:*
-		Added game rule *No Extra CB Cooldowns* to replace the customization decision *No CB Cooldowns*.
+		If the Paulician Patriarchate is ever inherited or usurped by a non-Paulician, the title will either be transferred back to the former owner (if they are alive and Paulician) or destroyed.
+	*FIXES:*
+		A Strong Basileus ascending in the Roman Empire will now properly reduce Imperial Decay by 5.
+
+
+EMF 6.05 [2016-11-25]
+	*CHANGES:*
+		Compatibility patch with Crusader Kings II v2.6.3.
+		(Reaper's Due) Upgraded all instances of new character spawns that had a randomized culture to only randomly select from cultures that are actually present on the map. This prevents very weird appearances of period-inappropriate or simply irrelevant cultures in the game.
+	*FIXES:*
+		Fixed an issue with insufficient auto-abort conditions for the *Plot to Gain Vassal Title* (credit to @Toa Kraka for the report).
+		Fixed a bug with the trigger for the "Duchy with none of its de jure Counties under holder" case for the *Plot to Gain Vassal Title*.
+		Fixed a couple typos in our new "Spouse is informed of divorce" event which prevented some intended divorce-related opinion modifiers from being applied (credit to @Toa Kraka for the report).
+		Fixed several instances of vanilla's type of *Administration* laws being referenced when EMF's set of *Administration* laws should have been referenced instead (in imported vanilla code).
+
+
+EMF 6.04 [2016-11-17]
+	*CHANGES:*
+		Fertility:
+			Characters now have a small chance of being born with hidden traits that alter their fertility: *Fertile* (previously existed but is now hidden), *Infertile* (the opposite of *Fertile* -- simply less fertile than normal), and *Sterile* (starts hidden but can be revealed). You will not know you have them and will not know if, say, the character you intend to marry has them.
+			It's possible for characters, when sick or when giving birth, to reduce their "rank" of fertility (e.g., *Fertile* is removed, or *Infertile* becomes *Sterile*).
+			A married woman who has no children and is sterile might begin to suspect that she is barren, which will present the option of attempting to "treat" her condition. Treatment might remove the hidden *Sterile* trait (replacing it with merely *Infertile*) but also has a chance of making her sick, injuring her, or even killing her. Hopefully, her husband learns nothing of these endeavours, but of course, there is a chance that he will.
+			A husband who has been married for more than three years without a pregnancy may become suspicious, receiving the option to have their physician or lord spiritual investigate. This might:
+				Uncover the hidden sterility of either marriage partner (revealing the previously hidden *Sterile* trait).
+				Piss off his wife, of course!
+				Make her sick or even permanently reduce her Health.
+			If secretly sterile characters have been married/consorts for more than five years, rumors may spread and also reveal their previously hidden *Sterile* trait.
+		Factions:
+			When rulers are invited to join an upcoming civil war and choose to do so, they will now immediately join the correct faction in order to participate in the war as a rebel. Similarly, players no longer need to manually join a faction after pledging to the rebel side; that is now automatic.
+		Multiplayer:
+			The *Grant County (Administrator)* and *Grant County (Military Governor)* title decisions now, like their singleplayer counterpart (*Grant County*), require either 25 gold or an eighth of your current yearly income, whichever is greater, if the province in question does not already match both your culture and religion. [Appointing a local governor is free.]
+		Automatic Empire Disintegration:
+			(EMF+SWMH) The HRE's minimum realm size requirement to avoid AED when it has less than *High Crown Authority* has been reduced to 250 holdings from 300.
+			Improved robustness of search for an allowed fallback kingdom title as well as the handling of vassal king independence when empire has *Imperial* or *al-Mulk* government type.
+		Plots:
+			You may no longer plot to revoke baronies in your capital county; we recently added this, but we've since decided that mechanism isn't appropriate for what we wanted to achieve. If the ability to do this returns, it will work differently.
+			Switching to the Intrigue screen should now have significantly reduced lag/delay in some circumstances.
+			More unavailable plots are now no longer shown at all (so not even a failed tooltip), primarily in cases where they could never realistically become available.
+			The tooltip for the *Plot to Gain Vassal Title* is now even more clear and succinct in its summary of the cases which the plot allows.
+			You may now plot to revoke vassal kings' titular kingdom titles if you like, although with current EMF rules regarding titular kingdoms, this doesn't come up much; it likely will again in the future, however.
+		(Reaper's Due) *Shut The Gates!* decision now only becomes available when an epidemic is actually nearby your capital rather than anywhere at all within your independent realm.
+		Tributaries are no longer automatically released when their suzerain dies if they are still valid targets for a tributary CB (e.g., still neighboring realms). They're given the option to either continue their tributary status or refuse to be bound by it. If they refuse, their suzerain may decide to immediately launch a war to force them back into line.
+		*Protected Council Appointments* law now requires the Conclave DLC.
+	*MINOR:*
+		(Reaper's Due) *Invite to Build Hospital* targeted decision (used on holy order grandmasters to allow them to construct a castle in your capital in exchange for a free hospital) now properly precludes making such deals with holy orders you've already expelled (vanilla oversight).
+		Merged vanilla's new *Ask To Leave Court* targeted decision with EMF's preexisting *Banish From Court* targeted decision.
+		(Vanilla Map) Wladyslaw I Herman of Poland no longer starts in 1066 with the *Infirm* trait. We figured that *Frail* was a more appropriate representation of his ailment. As a result, this historical character finally has a decent chance at becoming "King" of Poland, as is historical.
+		The scale of city sprawl on-map models has been reduced by -25%.
+	*FIXES:*
+		Mongol Invasion:
+			Fixed issue preventing scripted invasion AI from functioning (and proper event troops being spawned) in bookmarks after 1217.
+			Fixed issue which could cause invasion's initial war to succeed but still fail to actually usurp a title in order for the Mongols to become landed.
+			Added robust retry logic for invasion's initial war if it neither succeeds nor fails for some reason (e.g., if it gets invalidated) -- as much an enhancement as it is a "fix."
+		(EMF+SWMH) Zaydi religion now has proper names for God, as it did in plain EMF.
+		Educating a child while the Groom an Heir ambition is active should now prompt the child to get more than just the Ambitious trait.
+		The tournament-ending event no longer fires if the tournament has been previously cancelled by war or death.
+		(Reaper's Due) No more Isis-cultured Court Physicians named Adam.
+		Fixed a title history issue with the *Form the Saint-Empire Romain* decision which would not show the initial holder of the restored empire (due to a 2.6.X change).
+		Fixed a number of uses of "is_voter = yes" which were meant to identify a councillor but which don't work if you don't have the Conclave DLC active.
+
+
+EMF 6.03 [2016-10-25]
+	*CHANGES:*
+		Laws:
+			The *Crown Authority* sub-laws *Internal King's Peace* and *Complete King's Peace* now require a minimum of *Absolute Crown Authority* before they can be enacted. The former must still be enacted before the latter, respectively.
+			(Conclave DLC) The *Title Revocation* demesne law will now be automatically reduced whenever primary title *Crown Authority* is reduced below the law settings' respective minimum CA requirements, similar to the way in which the CA sub-laws *King's Peace* and *Protected Inheritance* are capped by CA.
+			(Conclave DLC) The *Title Revocation* law now applies a temporary 10-year opinion malus (-15) upon raising the law setting, just like the other *Crown Authority* sub-laws.
+			The maximum liege levy bonuses of *High Crown Authority* and *Absolute Crown Authority* have been removed, although the minimum liege levy bonuses (and demesne cap bonuses) remain the same.
+		(Conclave DLC) King-tier vassals may now join or create factions conspiring against their liege regardless of whether they're on their liege's council, how much power the council has, or whether it's discontent.
+		Mercenary companies which usurp land will now lose their mercenary title after five years (provided they are at peace).
+		Employment decisions now produce less overpowered courtiers (though they still have a chance of producing a good one), have a minimum cost, and may now be used only once every three months.
+		Decisions to convert to local culture/religion can now be taken regardless of whether you're independent or [do not] have a liege of the same culture/religion. Prestige costs of doing so have been lowered, and in the case of religion, so has the piety reward. [These decisions are not allowed for the AI; they use separate mechanics.]
+		The *Become Saoshyant* decision now requires controlling all counties in the 'Persia and Mesopotamia' region with both the vanilla and SWMH maps.
+	*FIXES:*
+		The settlement decision for converting a tribal holding to a castle, city, or temple holding should now work again.
+		The EMF Crier module, which among other things does flavorful-mechanical announcements of sacrificed religious heads, now works again with the new sacrificial death reasons added in 2.6 / Reaper's Due.
+		Some tweaks done to the events which prompt Seljuk's appearance, so there's less chance of something invalidating the event chain.
+		No more *Famous Beauty* horses.
+		Fixed some vanilla issues in prosperity events.
+
+
+EMF 6.02 [2016-10-12]
+	*MAJOR:*
+		Compatibility patch with Crusader Kings II v2.6.2
+		Tournaments:
+			All major tournaments have been merged to use the same file (with different text and pictures, based on the type).
+			Nomad Wargames now use the tournament system, in addition to the regular Grand Tournaments and Furusiyyas - the main difference is that they are cheaper and only have a single winner (instead of top three).
+			Independent dukes may now hold Grand Tournaments and Furusiyyas as well as kings and emperors.
+			All tournament types may be held once every ten years. They are canceled by war and if the ruler holding the tournament dies.
+			The cost of a tournament is now variable, with regular tournaments being 200 Wealth or a year's income, whichever is higher (Nomad Wargames are 50 Wealth or 6 months income).
+			All members of a ruler's realm will be invited to a tournament, and they can choose to take part in the fighting (if they are eligible) or they can spectate. This includes the ruler who called for the tournament. Women are allowed to fight in the tournament if they are eligible to be marshals (or would be if they were vassals, in the case of independent rulers). Spectators receive the same update on fights occurring during the tournament as a fighter, and they have a different group of events they are eligible to receive.
+			Updates on the tournament fights include not only who was wounded/killed but also who wounded/killed them.
+			All those attending a tournament have a chance of becoming ill from the crowds, with a greater chance for those who spectate rather than fight.
+			An event chain will pick the 'beauty of the realm' attending the tournament, if one is present, and she will receive the *Famous Beauty* trait. Former beauties will lose their trait and may become jealous.
+			Tournament romances between those who fight and those who spectate are fairly common, and there is an entire chain devoted to them.
+		Mongol Empire:
+			When the Mongol Empire reaches a certain size (enough to allow for fair-sized successor empires) and the current Khagan dies, it will split into three different realms -- with the heirs assuming new dynasties and abandoning claims in the other realms. Now, it is finally possible for the Golden Horde, il-Khanate, and the Chagatai Khanate (renamed to Moghul Khanate if no member of the Chagatayid dynasty forms it) to dynamically form and for Genghis's dynasty to break up into the houses of Jochi, Tolui, Ogedei, and Chagatai.
+			The Mongol invasion AI code has been further tuned to improve the pace of invasion and general menace of the Mongols while also ensuring more plausible invasion targets and reducing the potential for border gore during the invasion itself. This helps promote cleaner, more desirable outcomes for the aforementioned Mongol Empire split mechanic.
+			When Temujin spawns, many more of his historical relatives are spawned as well.
+		Tribal Holdings:
+			Tribal rulers will occasionally get pious courtiers asking for help to build a temple in one of their demesne provinces, help which can come in the form of wealth, piety, or prestige (but which is considerably cheaper than building the temple on one's own). Building can take up to twenty years or more, provided no events occur which delay the process. Should the pious courtier die or otherwise become invalid, the ruler can appoint another valid courtier to take their place.
+			Tribal rulers can now use the *Settle Province* job (replacing *Settle Tribe*) on demesne provinces of their own culture to attempt to build a city there. Once the steward finds a suitable spot, construction on the city can take up to ten years provided no events occur to delay or derail the process.
+	*CHANGES:*
+		Game Rules:
+			Rule *No Extra CB Cooldowns* replaces the customization decision *No CB Cooldowns*.
+			Rule *Republic CB Restrictions* partially replaces the customization *Rules for Merchant Republics*; the latter's functionality regarding unlocking higher levels of Crown Authority than *Limited Crown Authority* has been dropped.
+		Economy:
+			Castle, city, and temple construction technologies now award only an extra 4% tax generation from their holding type per tech level (caps at 32%) instead of the 6.25%/level in vanilla (caps at 50%).
+			Buildings now cost a further +30% across the board.
+			Gavelkind no longer confers any additional bonus to demesne size beyond the vanilla +30% (used to be +50%).
+			(EMF+SWMH) Demesne size limits have been reset to vanilla (and plain EMF). While vanilla does tend to have a higher value per province than SWMH *depending upon the region*, it doesn't call for an across-the-board demesne cap bonus.
+			(EMF+SWMH) Tribal holding tax modifier for each empty holding slot in its province reduced from 70% per empty slot to the vanilla 50%.
+			The base levy maintenance cost factor has been significantly reduced, although it is still higher than vanilla. This is primarily to allow the tribal AI to avoid auto-bankruptcy whenever they raid. Note that this change unfortunately affects non-tribals as well, as there is no way to separate the two groups' maintenance directly. Note that there are future plans to address this toward the end of furthering EMF's goals for war difficulty and realism.
+		Religious Tweaks:
+			Waldensians no longer receive an inherent +2 Sterwardship.
+			Paulicians no longer receive intrinsic morale bonuses for their levies.
+			Zealots may only be raised by Paulicians and Kharijites once every three months rather than once a month.
+			Cathar Perfecti may no longer be Spymasters or Marshals (or lead armies).
+			The *Invite Holy Man to Court* decision now has a chance of recruiting a woman if your religion is feminist. It also recruits a monk or nun for most Christian faiths, a perfecti for Cathars and Bogomilists, and a desert father or desert mother for Coptics and Monophysites.
+			Characters who commit suicide are no longer permitted to become saints.
+		Nomads:
+			Nomad stewards may now use the *Settle Province* job (replacing *Settle Tribe*) to change province culture in your demesne.
+			Nomads' clan limit has been reduced to the vanilla 9 from 12.
+			(EMF+SWMH) Nomadic vassal clans are now satisfied with fewer provinces per clan, because SWMH has far more historical clans per khaganate than vanilla, and this has dogged the efficacy of historical nomadic realms as well as led to the quick extinction of many of those historical clans once the game is actually unpaused with so many khaganates far over their clan limit.
+				Now, virtually no nomadic realms should already be over their clan limit at the start of the game. Expect to see some significantly different outcomes on the steppes than you may have grown accustomed.
+		Dynamic Mercenaries:
+			Some adjustment to AI willingness to make close relatives mercenary leaders -- they'll tend to only send those who are actually militarily-inclined.
+			Women can now be made dynamic mercenary leaders if they are also permitted to lead armies.
+		The *3rd-Party Claim* CB-- used for pressing the claims of those under you-- has new vassal rank restrictions regarding whether they'll remain your vassal after the war is successful. To review as well as illustrate this change, any one of the following conditions is sufficient for the claimant to become/remain your landed vassal after such a war, provided that your own rank is higher than the target title:
+			You are of the same dynasty as the claimant.
+			You are the de jure liege of the target title.
+			The claimant is already a vassal ruler (either directly or indirectly), AND:
+				(NEW) Their rank is no less than one rank below that of the target title. E.g., as an emperor pressing a vassal's claim for a kingdom, the vassal must already be of duke- or king-tier to remain your vassal after the war. It will not suffice to grant a courtier claimant a barony or county in this case.
+		Automatic Empire Disintegration:
+			Now checks all special title creation requirements upon potential fallback kingdoms before selecting one to be given to the soon-to-be-demoted Emperor. [It has always checked the minimum de jure territory requirements.]
+			Now lists any king-tier vassals that would go independent as a result of the title destruction, and in the process, fixes a potential source of game state coherency issues due to a 2.6 bug related to title destruction that breaks vassal-liege relationships.
+		Requests to a liege to transfer dejure vassals may now be made once per year, although the AI will do it only once every five years.
+		Added a Bogomilist Imperial government for parity with the non-Bogomilist Imperial and Muslim al-Mulk governments.
+		*History's Forgotten Daughters* now applies at all start dates (not just prior to 1066).
+		Recruiting vassals into a Court, Prosperity, Glory, or Tradition faction will now take effect instantly. Players may now be recruited as well, if they choose, and do not need to manually join the faction.
+		Balanced some of EMF's unique congenital traits (those once integrated from VIET Traits) and adjusted them so that they'll appear more often.
+		Base provincial supply limits have been slightly lowered.
+		Claimant faction is now much less likely to support rulers outside their independent realm.
+	*FIXES:*
+		[MAJOR] Tribal players will no longer default to *Tanistry Succession* (unless within the Celtic culture group).
+		The Magyar migration CB should not invalidate any longer if you occupy all the target's provinces in the eastern carpathian region.
+		The *Change a Province's Culture* ambition should now also succeed if culture changes due to the new prosperity event chain or through the Magyar migration.
+		The previous release's neato new feature regarding bishop selection for performing coronations now actually works [bishops sequentially ask to perform the ceremony in a rational order of importance to you]. A bug was preventing any bishop selection from happening at all.
+		Maronites may now go on pilgrimage. Tondrakians will now go to Constantinople rather than Axum.
+		Absorbing nomad clans should now result in a proper attempt to overthrow the khan again.
+		Removed erroneous crusade tooltip which mentioned claimants getting the crusade title.
+		Fixed a case where a poorly-translated bible could result in massive MA adjustments to Christian faiths.
+		Fixed an issue wherein de jure emperors usurping secondary de jure empires could theoretically lead to a [slow] cycle of pointless secondary empire usurpation & destruction due to EMF's "one emperor, one empire" mechanic (thanks to @Toa Kraka for pointing this out).
+		Jihads should now be eligible to begin before Christian crusades are valid.
+		Immortals will no longer lose swordsmanship skill due to advanced age.
+		Despot minor title can now still be handed out even when the Conclave DLC isn't active.
+		Removed an old event from Project Balance that was blank regarding the return of Benevento to the King of Sicily.
+		The Catholic and Orthodox faiths will no longer be able to emancipate their religions after the schism has been mended.
+		The emancipation decision now works if the parent religion head is a player - it now permits that player to decide whether a crusade will be called.
 
 
 EMF 6.01 [2016-09-06]

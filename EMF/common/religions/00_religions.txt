@@ -163,7 +163,6 @@ christian = {
 		
 		character_modifier = {
 			temple_tax_modifier = -0.5
-			stewardship = 2
 		}
 		unit_home_modifier = {
 			garrison_size = 0.5		
@@ -560,12 +559,6 @@ christian = {
 		}
 		evil_god_names = {
 			SATAN LUCIFER THE_DEVIL THE_DEMIURGE
-		}
-		
-		unit_home_modifier = {
-			land_morale = 0.5
-			light_infantry_offensive = 0.5
-			key = "OFF_RELIGION"
 		}
 
 		allow_looting = yes
@@ -1016,6 +1009,17 @@ muslim = {
 		color = { 0.4 0.9 0.0 }
 
 		crusade_name = JIHAD
+		scripture_name = THE_KORAN
+		priest_title = MULLAH
+		
+		high_god_name = GOD_ALLAH
+		
+		god_names = {
+			GOD_ALLAH GOD_THE_GREATEST
+		}
+		evil_god_names = {
+			IBLIS SHAYTAN
+		}
 
 		priests_can_marry = yes
 		psc_marriage = no
@@ -1581,6 +1585,8 @@ pagan_group = {
 		
 		religious_clothing_head = 3
 		religious_clothing_priest = 3
+		
+		hard_to_convert = yes
 		
 		dislike_tribal_organization = yes
 		intermarry = christian

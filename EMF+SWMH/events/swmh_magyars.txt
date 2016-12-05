@@ -58,10 +58,15 @@ province_event = {
 
 	option = {
 		name = I_SEE
+		save_event_target_as = emf_province
 		set_province_flag = szekely_conversion
 		culture = szekely
 		hidden_tooltip = {
 			owner = {
+				hidden_tooltip = {
+					character_event = { id = emf_ambitions.1 }
+					any_liege = { character_event = { id = emf_ambitions.1 } }
+				}
 				create_random_soldier = {
 					random_traits = yes
 					dynasty = none
@@ -69,6 +74,9 @@ province_event = {
 					culture = szekely
 					female = no
 					age = 25
+				}
+				new_character = {
+					emf_new_character_effect = yes
 				}
 				create_random_soldier = {
 					random_traits = yes
@@ -78,6 +86,9 @@ province_event = {
 					female = no
 					age = 28
 				}
+				new_character = {
+					emf_new_character_effect = yes
+				}
 				create_character = {
 					random_traits = yes
 					dynasty = none
@@ -86,6 +97,9 @@ province_event = {
 					female = no
 					age = 30
 				}
+				new_character = {
+					emf_new_character_effect = yes
+				}
 				create_character = {
 					random_traits = yes
 					dynasty = none
@@ -93,6 +107,9 @@ province_event = {
 					culture = szekely
 					female = yes
 					age = 16
+				}
+				new_character = {
+					emf_new_character_effect = yes
 				}
 				liege = {
 					create_random_soldier = {
@@ -103,6 +120,9 @@ province_event = {
 						female = no
 						age = 25
 					}
+					new_character = {
+						emf_new_character_effect = yes
+					}
 					create_character = {
 						random_traits = yes
 						dynasty = none
@@ -111,6 +131,9 @@ province_event = {
 						female = no
 						age = 22
 					}
+					new_character = {
+						emf_new_character_effect = yes
+					}
 					create_character = {
 						random_traits = yes
 						dynasty = none
@@ -118,6 +141,9 @@ province_event = {
 						culture = szekely
 						female = yes
 						age = 16
+					}
+					new_character = {
+						emf_new_character_effect = yes
 					}
 				}
 			}
