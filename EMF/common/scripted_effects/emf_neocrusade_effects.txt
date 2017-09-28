@@ -4,15 +4,13 @@ emf_cb_neocrusade_cleanup = {
 	hidden_tooltip = {
 		ROOT = {
 			primary_title = {
-				ROOT = {
-					any_claim = {
-						limit = {
-							tier = COUNT
-							has_title_flag = emf_neocrusade_target_@PREVPREV
-						}
-						remove_claim = ROOT
-						clr_title_flag = emf_neocrusade_target_@PREVPREV
+				any_landed_title = {
+					limit = {
+						tier = COUNT
+						has_title_flag = emf_neocrusade_target_@PREV
 					}
+					remove_claim = ROOT
+					clr_title_flag = emf_neocrusade_target_@PREV
 				}
 			}
 		}
