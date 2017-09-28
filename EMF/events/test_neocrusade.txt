@@ -46,14 +46,100 @@ character_event = {
 		}
 		c_sjaelland = { add_claim = event_target:pope set_title_flag = emf_neocrusade_target_@event_target:pap }
 		c_skane = { add_claim = event_target:pope set_title_flag = emf_neocrusade_target_@event_target:pap }
-
-		event_target:pope = { war = { target = event_target:hre casus_belli = neocrusade } }
 	}
 
 	option = {
 		name = placeholder_c
-		trigger = { has_global_flag = ne00 has_global_flag = ne01 }
+		trigger = { has_global_flag = ne01 }
 		set_global_flag = ne02
+
+		# Here, we shall spawn ample units and boats for the Pope and then declare war on the HRE in the Crusade to
+		# End The Sound Toll. Deus Vult! [May Lubeck be the new capital of the Germans! May our Stadtholder lead
+		# us to infinite prosperity under a fundamentally flawed but useful, transitional set of pre-market economic
+		# principles! <-- The kind of shit the Pope is trying to end here. I mean, really.]
+
+		event_target:pope = {
+			spawn_unit = {
+				province = 333
+				owner = THIS
+				match_character = THIS
+				match_mult = 3.0
+				match_min = 3333
+				match_max = 10000
+				disband_on_peace = yes
+				earmark = test_neocrusade
+			}
+			spawn_unit = {
+				province = 333
+				owner = THIS
+				match_character = THIS
+				match_mult = 3.0
+				match_min = 3333
+				match_max = 10000
+				disband_on_peace = yes
+				earmark = test_neocrusade
+			}
+			spawn_unit = {
+				province = 333
+				owner = THIS
+				match_character = THIS
+				match_mult = 3.0
+				match_min = 3333
+				match_max = 10000
+				disband_on_peace = yes
+				earmark = test_neocrusade
+			}
+			spawn_unit = {
+				province = 333
+				owner = THIS
+				match_character = THIS
+				match_mult = 3.0
+				match_min = 3333
+				match_max = 10000
+				disband_on_peace = yes
+				earmark = test_neocrusade
+			}
+			# This is enough galleys to transport a fucking exodus of mankind
+			spawn_fleet = {
+				province = closest
+				owner = THIS
+				earmark = test_neocrusade
+				troops = { galleys = { 110 110 } }
+			}
+			spawn_fleet = {
+				province = closest
+				owner = THIS
+				earmark = test_neocrusade
+				troops = { galleys = { 110 110 } }
+			}
+			spawn_fleet = {
+				province = closest
+				owner = THIS
+				earmark = test_neocrusade
+				troops = { galleys = { 110 110 } }
+			}
+			spawn_fleet = {
+				province = closest
+				owner = THIS
+				earmark = test_neocrusade
+				troops = { galleys = { 110 110 } }
+			}
+			spawn_fleet = {
+				province = closest
+				owner = THIS
+				earmark = test_neocrusade
+				troops = { galleys = { 200 200 } }
+			}
+
+			# DOOOOO IIIIT!
+			war = { target = event_target:hre casus_belli = neocrusade }
+		}
+	}
+
+	option = {
+		name = placeholder_d
+		trigger = { has_global_flag = ne02 }
+		set_global_flag = ne03
 
 		# Assuming that seems to be working, try to remove the Pope's claims right after declaring war (before
 		# unpausing) and see if the war behaves as it did previously re: contested titles.
