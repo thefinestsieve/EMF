@@ -1,0 +1,20 @@
+# -*- ck2.scripted_effects -*-
+
+emf_cb_neocrusade_cleanup = {
+	hidden_tooltip = {
+		ROOT = {
+			primary_title = {
+				ROOT = {
+					any_claim = {
+						limit = {
+							tier = COUNT
+							has_title_flag = emf_neocrusade_target_@PREVPREV
+						}
+						remove_claim = ROOT
+						clr_title_flag = emf_neocrusade_target_@PREVPREV
+					}
+				}
+			}
+		}
+	}
+}

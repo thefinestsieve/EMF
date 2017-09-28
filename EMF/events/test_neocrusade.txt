@@ -1,0 +1,68 @@
+# -*- ck.events -*-
+
+namespace = test_neocrusade
+
+# designed to start in 1066
+
+character_event = {
+	id = test_neocrusade.0
+	desc = MEH
+	picture = GFX_evt_bloody_man
+	border = GFX_event_normal_frame_war
+
+	immediate = {
+		e_hre = { owner = { save_event_target_as = hre } }
+		k_papal_state = {
+			owner = { save_event_target_as = pope }
+			save_event_target_as = pap
+		}
+	}
+
+	option = {
+		name = placeholder_a
+		trigger = { NOT = { has_global_flag = ne00 } }
+		set_global_flag = ne00
+		# Get Denmark's region squarely under the HRE.
+		any_independent_ruler = {
+			limit = {
+				any_realm_province = { kingdom = { title = k_denmark } }
+				NOT = { character = event_target:hre }
+			}
+			set_defacto_liege = event_target:hre
+			emf_liege_change = yes
+		}
+	}
+
+
+	option = {
+		name = placeholder_b
+		trigger = { has_global_flag = ne00 }
+		set_global_flag = ne01
+		# We shall target part of the Sjaelland duchy and one county adjacent (across strait) in Scania
+		# Pope is trying to End the Sound Toll, in other words (HSA 4 LIFE)
+		c_southern_sjaelland = {
+			add_claim = event_target:pope
+			set_title_flag = emf_neocrusade_target_@event_target:pap
+		}
+		c_sjaelland = { add_claim = event_target:pope set_title_flag = emf_neocrusade_target_@event_target:pap }
+		c_skane = { add_claim = event_target:pope set_title_flag = emf_neocrusade_target_@event_target:pap }
+
+		event_target:pope = { war = { target = event_target:hre casus_belli = neocrusade } }
+	}
+
+	option = {
+		name = placeholder_c
+		trigger = { has_global_flag = ne00 has_global_flag = ne01 }
+		set_global_flag = ne02
+
+		# Assuming that seems to be working, try to remove the Pope's claims right after declaring war (before
+		# unpausing) and see if the war behaves as it did previously re: contested titles.
+
+		event_target:pope = {
+			remove_claim = c_southern_sjaelland
+			remove_claim = c_sjaelland
+			remove_claim = c_skane
+		}
+	}
+
+}
