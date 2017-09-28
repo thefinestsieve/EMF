@@ -19622,7 +19622,6 @@ neocrusade = {
 
 	can_use = {
 		ROOT = {
-			ai = no
 			NOT = { same_realm = FROM }
 			primary_title = {
 				ROOT = {
